@@ -1,0 +1,195 @@
+<app-header [isUserLoggedIn]="false" ></app-header>
+
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">Laporan Kesalahan</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="section">
+<!-- 
+      <div *ngIf="isClicked()">
+
+      </div>
+
+      <div *ngIf="!isClicked()">
+
+      </div> -->
+      
+    <div class="column is-centered">
+      <div *ngFor="let data of data[0]" >Component Values: name, {{data.dob}}, {{data.dod}}, {{data.plot}}</div>
+      <div>FormGroup Values: {{personForm.value.name}}, {{personForm.value.dob}}, {{personForm.value.dod}}, {{personForm.value.plot}}</div>
+      <form [formGroup]="personForm">
+        <div>
+          <span>Name: <input formControlName="nama"></span>
+        </div>
+        <div>
+          <span>DOB: <input formControlName="dob"></span>
+        </div>
+        <div>
+          <span>DOD: <input formControlName="dod"></span>
+        </div>
+        <div>
+          <span>Plot: <input formControlName="plot"></span>
+        </div>
+      </form>
+      <button (click)="saveForm()">Save</button>
+      <button (click)="resetForm()">Reset</button>
+
+      <!-- <form *ngFor="let dynamic of data[0]"> -->
+        <!-- <input class="input" type="text" value={{dynamic.nama}} name="nama"/>
+        <input class="input" type="text" value={{dynamic.plot}} name="plot"/> -->
+      <!-- </form> -->
+      <!-- <form [formGroup]="placesForm" class="card mx-4" (submit)="onSubmit()">
+        <div class="field">
+          <label class="label">User</label>
+          <input class="form-control" formControlName="userid" />
+        </div>
+        <div class="field">
+          <label class="label">Phone</label>
+          <input class="form-control" formControlName="phone" />
+        </div>
+        <div class="field">
+          <label class="label">Name</label>
+          <input class="form-control" formControlName="corrname" />
+        </div>
+        <div class="field">
+          <label class="label">DOB</label>
+          <input class="form-control" formControlName="corrdob" />
+        </div>
+        <div class="field">
+          <label class="label">DOD</label>
+          <input class="form-control" formControlName="corrdod" />
+        </div>
+        <div class="field">
+          <label class="label">Plot</label>
+          <input class="form-control" formControlName="corrplot" />
+        </div>
+        <div class="buttons is-centered">
+          <button type="submit" class="button is-primary">Log Masuk</button>
+        </div>
+      </form> -->
+    </div>
+    </section>
+
+      <!-- <table class="table">
+            <tr>
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Nama Pelapor</b></h3></th>
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Nombor Telefon</b></h3></th>
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Pembetulan Nama</b></h3></th>              
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Pembetulan Tarikh Lahir</b></h3></th>             
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Pembetulan Tarikh Kematian</b></h3></th>             
+                <th style="text-align: center;padding-top: 20px;"><h3><b>Pembetulan Plot Kubur</b></h3></th>
+            </tr>            
+            
+            <tr *ngFor="let correction of data[0]">
+                <td><input class="input" type="text" name="userid"></td>
+                <td><input class="input" type="text" name="phone" /></td>
+                <td><input disabled class="input" type="text" value={{correction.name}} name="name" /> &nbsp;
+                <input class="input" type="text" value={{correction.corrname}} name="corrname" /></td>
+
+                <td><input disabled class="input" type="text" value={{correction.dob}} name="dob" /> &nbsp;
+                <input class="input" type="text" value={{correction.corrdob}} name="corrdob" /></td>
+
+                <td><input disabled class="input" type="text" value={{correction.dod}} name="dod" /> &nbsp;
+                <input class="input" type="text" value={{correction.corrdod}} name="corrdod" /></td>
+
+                <td><input disabled class="input" type="text" value={{correction.plot}} name="plot" /> &nbsp;
+                <input class="input" type="text" value={{correction.corrplot}} name="corrplot" /></td>
+
+                <td style="padding-top: 8px;">
+                    <button type="submit" (click)="update(correction.userid, correction.phone, correction.corrname, correction.corrdob, correction.corrdod, correction.corrplot)" class="button is-success is-normal">Hantar</button>
+                    
+              </td>
+            </tr>
+        </table> -->
+    <!-- </div> -->
+  </div>
+
+
+  <!-- <section class="section">
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+    <div class="alert alert-warning" *ngIf='invalidForm'>{{ errorMessage }}</div>
+      <form [formGroup]="reactiveForm" (ngSubmit)="correction(name)">
+        <div class="field">
+          <label class="label">Nama Pelapor</label>
+          <input class="input" type="text" formControlName="user" [class.invalid]="!reactiveForm.controls.user.valid && reactiveForm.controls.user.dirty">       
+            <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.user.hasError('required') && (reactiveForm.controls.user.dirty)">
+            Sila isi nama pelapor
+            </p>
+        </div>
+
+        <div class="field">
+            <label class="label">Nombor telefon</label>
+                  <div class="field is-expanded">
+                    <div class="field has-addons">
+                      <p class="control">
+                        <a class="button is-static">
+                          +60
+                        </a>
+                      </p>
+                      <p class="control is-expanded">
+                        <input class="input" type="phone" formControlName="phone" placeholder="123456789"
+                          [class.invalid]="!reactiveForm.controls.phone.valid && reactiveForm.controls.phone.dirty">
+                      </p>
+                    </div>
+                  </div>
+              <p class="errorMessage" *ngIf="!reactiveForm.controls.phone.hasError('required') && reactiveForm.controls.phone.hasError('maxlength') && (reactiveForm.controls.phone.dirty)">Maksimum 10 karakter.
+              </p>
+          
+              <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.phone.hasError('required') && (reactiveForm.controls.phone.dirty)">
+                Sila isi nombor telefon
+              </p> 
+          </div>
+
+        <label class="label">Pembetulan Nama</label>
+        <input class="input" type="text" formControlName="name" value="{{name}}">
+        <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.name.hasError('required') && (reactiveForm.controls.name.dirty)">
+          Sila isi pembetulan nama 
+          </p>
+&nbsp;
+      <div class="field">
+        <label class="label">Pembetulan Tarikh Lahir</label>
+              <div class="field is-expanded">
+                <div class="field has-addons">
+                  <p class="control is-expanded">
+                      <kendo-datepicker formControlName="dob" [format]="format"  [class.invalid]="!reactiveForm.controls.dob.valid && reactiveForm.controls.dob.dirty"></kendo-datepicker>
+                  </p>
+                </div>
+              </div>                
+            <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.dob.hasError('required') && (reactiveForm.controls.dob.dirty)">
+              Sila isi pembetulan tarikh lahir
+            </p>  
+      </div>
+
+      <div class="field">
+        <label class="label">Pembetulan Tarikh Kematian</label>
+              <div class="field is-expanded">
+                <div class="field has-addons">
+                  <p class="control is-expanded">
+                      <kendo-datepicker formControlName="dod" [format]="format"  [class.invalid]="!reactiveForm.controls.dod.valid && reactiveForm.controls.dod.dirty"></kendo-datepicker>
+                  </p>
+                </div>
+              </div>                
+            <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.dob.hasError('required') && (reactiveForm.controls.dob.dirty)">
+              Sila isi pembetulan tarikh kematian
+            </p> 
+      </div>
+
+      <label class="label">Pembetulan Plot Kubur</label>
+      <input class="input" type="text" formControlName="plot" [class.invalid]="!reactiveForm.controls.plot.valid && reactiveForm.controls.plot.dirty">
+     <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.username.hasError('required') && (reactiveForm.controls.username.dirty)">
+        Sila isi pembetulan plot kubur
+        </p> 
+        &nbsp;
+        <div class="buttons is-centered">
+          <button type="submit" [disabled]="!reactiveForm.valid" class="button is-primary">Hantar</button>
+        </div>
+      </form>      
+    </div>
+  </div>
+</section> -->

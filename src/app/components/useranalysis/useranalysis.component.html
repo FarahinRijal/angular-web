@@ -1,0 +1,250 @@
+  <!-- User Header -->
+  <app-header [isUserLoggedIn]="false" ></app-header>
+
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">Analisis Maklumat</h1>
+      </div>
+    </div>
+  </section>
+  
+  <div class="section">
+    <div class="columns">
+      <div class="container">
+        <main class="column">
+
+          <div class="container" style="margin-left:10%; margin-right: 5%;">
+            <div class="column is-centered">
+              <div class="container" style="text-align:center">
+                <h3>
+                  Jumlah Kematian Mengikut Tahun
+                </h3>
+                <div class="container">                    
+                <div class="row ml-5">
+                  <div class="col">
+                      <div class="container">
+                            <ngx-charts-bar-vertical
+                            (window:resize)="onResize($event)"
+                            [view]="view"
+                            [scheme]="colorScheme"
+                            [results]="year"
+                            [gradient]="gradient"
+                            [xAxis]="showXAxis"
+                            [yAxis]="showYAxis"
+                            [legend]="false"
+                            [showXAxisLabel]="showXAxisLabel"
+                            [showYAxisLabel]="showYAxisLabel"
+                            [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel">
+                            </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>  
+          </div>
+           <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          
+
+          <!-- <div class="column">
+            <div class="box">
+              <h3>PENGIRAAN POPULASI</h3>
+            </div>
+
+            <div class="columns is-multiline">
+              <div class="column">
+                <div class="box">
+                  <b>Kadar Populasi</b>
+                  <p>
+                    <img class="img" src="assets/img/kp.jpg" />
+                  </p>
+                  <div class="field">
+                    Populasi Melayu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                    <input type="text" [(ngModel)]="populasimelayu">
+                  </div>
+                  <div class="field">
+                    Keluasan Census Block (m<sup>2</sup>) :
+                    <input type="text" [(ngModel)]="keluasan">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="KadarPopulasi()">Kira</button>
+                  <br/><br/>
+                  <b>Jumlah : {{kadar_populasi | number:'1.2-3'}} %</b>
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="box">
+                  <b>Unjuran Populasi</b>
+                  <p>
+                    <img class="img2" src="assets/img/up.jpg" />
+                  </p>
+                  <div class="field">
+                    Bilangan Populasi &nbsp;:
+                    <input type="text" [(ngModel)]="bilpopu">
+                  </div>
+                  <div class="field">
+                    Bilangan Kelahiran :
+                    <input type="text" [(ngModel)]="kelahiran">
+                  </div>
+                  <div class="field">
+                    Bilangan Kematian :
+                    <input type="text" [(ngModel)]="kematian">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="UnjuranPopulasi()">Kira</button>
+                  <br/><br/>
+                  <b>Jumlah : {{unjuran}}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="columns is-multiline">
+              <div class="column">
+                <div class="box">
+                  <b>Bilangan Kelahiran</b>
+                  <p>
+                    <img class="img2" src="assets/img/bk.jpg" />
+                  </p>
+                  <div class="field">
+                    Bilangan Kematian :
+                    <input type="number" [(ngModel)]="bilkematian">
+                  </div>
+                  <div class="field">
+                    Jumlah Penduduk &nbsp;:
+                    <input type="number" [(ngModel)]="jumpenduduk">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="KadarKematian()">Kira</button>
+                  <br/><br/>
+                  <b>Kadar Kematian : {{kadarkematian | number:'1.2-2'}}</b>
+                  </div>
+        
+                  <div class="field">
+                    Bilangan Populasi :
+                    <input type="text" [(ngModel)]="bilpopulasi">
+                  </div>
+                  <div class="field">
+                    Kadar Kematian &nbsp;&nbsp;&nbsp;&nbsp;: 
+                    <input type="text" [(ngModel)]="kk">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="BilKelahiran()">Kira</button>
+                  <br/><br/>
+                  <b>Bilangan Kelahiran : {{bilkelahiran | number:'1.0-0'}}</b>
+                  </div>
+        
+                </div>
+              </div>
+        
+              <div class="column">
+                <div class="box">
+                  <b>Bilangan Kematian</b>
+                  <p>
+                    <img class="img2" src="assets/img/bkn.jpg" />
+                  </p>
+                  <div class="field">
+                    Bilangan Kelahiran :
+                    <input type="number" [(ngModel)]="bilkel">
+                  </div>
+                  <div class="field">
+                    Jumlah Penduduk &nbsp;:
+                    <input type="number" [(ngModel)]="jumlahpen">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="KadarKelahiran()">Kira</button>
+                  <br/><br/>
+                  <b>Kadar Kelahiran : {{kadarkelahiran | number:'1.2-2'}}</b>
+                  </div>
+        
+                  <div class="field">
+                    Bilangan Populasi :
+                    <input type="text" [(ngModel)]="bilpop">
+                  </div>
+                  <div class="field">
+                    Kadar Kelahiran &nbsp;&nbsp;&nbsp;&nbsp;: 
+                    <input type="text" [(ngModel)]="kkn">
+                  <br/><br/>
+                  <button type="submit" class="button is-primary is-small" (click)="BilKematian()">Kira</button>
+                  <br/><br/>
+                  <b>Bilangan Kematian : {{bilkem | number:'1.0-0'}}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div> -->
+  
+        <!-- <div class="column">
+          <div class="box">
+            <h3>PENGIRAAN TANAH</h3>
+          </div>
+          <div class="columns is-multiline">
+            <div class="column">
+              <div class="box">
+                <b>Keluasan bagi Satu Lot</b>
+                <p>
+                  <img class="img1" src="assets/img/luaslot.jpg" />
+                </p>
+                <div class="field">
+                  <p>Keluasan Tanah Perkuburan yang Telah Digunakan (m<sup>2</sup>) :</p>
+                  <input type="text" [(ngModel)]="luastanah">
+                </div>
+                <div class="field">
+                  Bilangan Lot Sedia Ada&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" [(ngModel)]="lotsedia">
+                <br/><br/>
+                <button type="submit" class="button is-primary is-small" (click)="KeluasanLot()">Kira</button>
+                <br/><br/>
+                <b>Keluasan : {{keluasanlot | number:'1.2-3'}} m<sup>2</sup></b>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box">
+                <b>Keluasan Tanah Perkuburan yang Masih Kosong</b>
+                <p>
+                  <img class="tanahkosong" src="assets/img/tanahkosong.jpg" />
+                </p>
+                <div class="field">
+                  <p> Keluasan Keseluruhan Tanah Perkuburan : </p>
+                  <input type="text" [(ngModel)]="luasseluruhtanah">
+                </div>
+                <div class="field">
+                  <p>Keluasan Tanah Perkuburan yang Telah Digunakan : </p>
+                  <input type="text" [(ngModel)]="luastanahguna">
+                <br/><br/>
+                <button type="submit" class="button is-primary is-small" (click)="KeseluruhanTanah()">Kira</button>
+                <br/><br/>
+                <b>Luas Tanah Kosong : {{keseluruhantanah | number:'1.2-3'}} hektar</b>
+                <br/>
+                </div>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="box">
+                <b>Bilangan Lot yang Masih Kosong</b>
+                <p>
+                  <img class="img2" src="assets/img/billot.jpg" />
+                </p>
+                <div class="field">
+                  <p>Keluasan Lot yang Masih Kosong (m<sup>2</sup>) :</p>
+                  <input type="text" [(ngModel)]="luaslotkosong">
+                </div>
+                <div class="field">
+                  <p>Keluasan bagi Satu Lot (m<sup>2</sup>) :</p>
+                  <input type="text" [(ngModel)]="satulot">
+                <br/><br/>
+                <button type="submit" class="button is-primary is-small" (click)="LotKosong()">Kira</button>
+                <br/><br/>
+                <b>Lot Kosong : {{billotkosong | number:'1.0-0'}} lot</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+          
+                   
+        </main>
+      </div>
+    </div>
+  </div>

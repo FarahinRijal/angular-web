@@ -1,0 +1,124 @@
+<!-- <section class="hero  is-link ">
+    <div class="hero-head">
+    <a class="navbar-item" routerLink="/">
+    <img src="assets/img/logo4.png" />
+  </a>
+    </div>
+  </section> -->
+
+  <app-header [isUserLoggedIn]="false" ></app-header>
+
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">Daftar Pengguna</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="columns is-centered">
+      <div class="column is-one-third">
+        <form [formGroup]="reactiveForm" (ngSubmit)="doRegister()">
+          <div class="field">
+            <label class="label">Nama penuh</label>
+              <input class="in"
+                      type="text"
+                      formControlName="fullname" 
+                      [class.invalid]="!reactiveForm.controls.fullname.valid && reactiveForm.controls.fullname.dirty">
+                      <p style="color:red;"  class="errorMessage" *ngIf="reactiveForm.controls.fullname.hasError('required') && (reactiveForm.controls.fullname.dirty)">
+                        Sila isi nama penuh
+                      </p>
+          </div>
+
+          <div class="field">
+            <label class="label">Nombor telefon</label>
+                  <div class="field is-expanded">
+                    <div class="field has-addons">
+                      <!-- <p class="control">
+                        <a class="button is-static">
+                          +60
+                        </a>
+                      </p> -->
+                      <p class="control is-expanded">
+                        <input class="in" type="number" formControlName="phone"
+                          [class.invalid]="!reactiveForm.controls.phone.valid && reactiveForm.controls.phone.dirty">
+                      </p>
+                    </div>
+                  </div>
+              <p class="errorMessage" *ngIf="!reactiveForm.controls.phone.hasError('required') && reactiveForm.controls.phone.hasError('maxlength') && (reactiveForm.controls.phone.dirty)">Maksimum 10 karakter.
+              </p>
+          
+              <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.phone.hasError('required') && (reactiveForm.controls.phone.dirty)">
+                Sila isi nombor telefon
+              </p> 
+          </div>
+
+          <div class="field">
+            <label class="label">E-mel</label>
+            <input class="in"
+                  type="text"
+                  placeholder="abc@gmail.com"
+                  formControlName="email"[class.invalid]="!reactiveForm.controls.email.valid && reactiveForm.controls.email.dirty">
+                  <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.email.hasError('required') && (reactiveForm.controls.email.dirty)">
+                    Sila isi emel
+                  </p>
+          </div>
+
+          <div class="field">
+            <label class="label">Pekerjaan</label>
+              <input class="in"
+                      type="text"
+                      formControlName="job" 
+                      [class.invalid]="!reactiveForm.controls.job.valid && reactiveForm.controls.job.dirty">
+                    <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.job.hasError('required') && (reactiveForm.controls.job.dirty)">
+                        Sila isi pekerjaan
+                    </p>
+          </div>
+
+          <div class="field">
+            <label class="label">Nama pengguna</label>
+              <input class="in"
+                      type="text"
+                      formControlName="username" 
+                      [class.invalid]="!reactiveForm.controls.username.valid && reactiveForm.controls.username.dirty">
+                    <p class="errorMessage" *ngIf="!reactiveForm.controls.username.hasError('required') && reactiveForm.controls.username.hasError('maxlength') && (reactiveForm.controls.username.dirty)">Maksimum 12 karakter.
+                    </p> 
+                
+                    <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.username.hasError('required') && (reactiveForm.controls.username.dirty)">
+                      Sila isi nama pengguna
+                    </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Kata laluan</label>
+            <input class="in"
+                  type="password"
+                  formControlName="password"
+                  [class.invalid]="!reactiveForm.controls.password.valid && reactiveForm.controls.password.dirty">
+              <p class="errorMessage" *ngIf="!reactiveForm.controls.password.hasError('required') && reactiveForm.controls.password.hasError('maxlength') && (reactiveForm.controls.password.dirty)">Maksimum 12 karakter.
+              </p>
+            
+              <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.password.hasError('required') && (reactiveForm.controls.password.dirty)">
+                Sila isi kata laluan
+              </p>  
+      </div>
+
+          <div>
+            <label class="checkbox">
+              <input type="checkbox">
+              Mohon menjadi admin
+            </label>
+          </div>
+
+          <div class="buttons is-centered">
+          <button type="submit" [disabled]="!reactiveForm.valid" class="button is-primary">Daftar</button>
+        </div>
+
+        <div class="buttons is-centered">
+          <a routerLink="/login">Sudah mempunyai akaun?</a>
+        </div>
+        </form>      
+      </div>
+    </div>
+  </section>

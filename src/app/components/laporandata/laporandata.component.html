@@ -1,0 +1,214 @@
+
+    <app-header [isUserLoggedIn]="true" ></app-header>
+    
+    <div class="section">
+      <div class="columns">
+        <aside class="column is-2">
+          <nav class="menu">
+            <p class="menu-label">
+              General
+            </p>
+            <ul class="menu-list">
+              <li><a href="/adminhome">Dashboard</a></li>
+            </ul>
+            <p class="menu-label">
+              Administration
+            </p>
+            <ul class="menu-list">
+              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a href="/semakandata" >Semakan Data</a></li>
+              <li><a href="/listkubur" >Senarai Kematian</a></li>
+            </ul>
+            <p class="menu-label">
+              User
+            </p>
+            <ul class="menu-list">
+              <li><a href="/laporandata" >Laporan Data</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- FORM -->
+        <main class="column">
+          <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title has-text-centered">Laporan Pembetulan Data</h1>
+              </div>
+            </div>
+          </section>
+          <br/>
+          <div class="container">
+          
+            <div class="columns is-multiline">
+              <div class="column">
+                <div class="columns is-centered">
+                  <div class="column is-full">
+                    <div class="box" *ngFor="let row of data[0]">
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Nama Si Mati</label>
+                        </div>
+                        <div class="field-body">
+                          <!-- <div class="field"> -->
+                            <p class="control">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.name}} name="name"> -->
+                              {{row.name}}
+                            </p>
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Pembetulan</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control" style="color:red">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrname}} name="corrname"> -->
+                              {{row.corrname}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Tarikh Lahir</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.dob}} name="dob"> -->
+                              {{row.dob | date: 'dd/MM/yyyy'}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Pembetulan</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control"  style="color:red">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrdob}} name="corrdob"> -->
+                              {{row.corrdob | date: 'dd/MM/yyyy'}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Tarikh Kematian</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.dod}} name="dod"> -->
+                              {{row.dod | date: 'dd/MM/yyyy'}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Pembetulan</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control"  style="color:red">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrdod}} name="corrdod"> -->
+                              {{row.corrdod | date: 'dd/MM/yyyy'}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Plot Kubur</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.plot}} name="plot"> -->
+                              {{row.plot}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Pembetulan</label>
+                        </div>
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control"  style="color:red">
+                              <!-- <input input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrplot}} name="corrplot"> -->
+                              {{row.corrplot}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="buttons is-centered">
+                        <div class="field is-grouped">
+                          <p class="control">
+                      <button style="font-size: 13px;" type="submit" (click)="accept(row.name,row.dob,row.dod,row.plot,row.corrname,row.corrdob,row.corrdod,row.corrplot, row.testkubur_id)" class="button is-success is-normal" >Terima</button></p>
+                      <p class="control">
+                      <button style="font-size: 13px;" type="submit" (click)="reject(row.name,row.dob,row.dod,row.plot,row.corrname,row.corrdob,row.corrdod,row.corrplot, row.testkubur_id)" class="button is-danger is-normal" >Tolak</button> </p>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>        
+
+          <!-- <div class="columns is-multiline">
+            <div class="column">
+              <div class="columns is-centered">
+                <div class="column is-full">
+                  <table class="table">
+                        <tr>
+                          <th style="text-align: center;padding-top: 20px;"><b>Nama Si Mati</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Pembetulan</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Tarikh Lahir</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Pembetulan</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Tarikh Kematian</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Pembetulan</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Plot</b></th>
+                          <th style="text-align: center;padding-top: 20px;"><b>Pembetulan</b></th>
+                        </tr>
+                        
+                        <tr *ngFor="let row of data[0]">
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.name}} name="name" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrname}} name="corrname" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.dob}} name="dob" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrdob}} name="corrdob" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.dod}} name="dod" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrdod}} name="corrdod" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.plot}} name="plot" /></td>
+                          <td><input style="font-size: 12px;" readonly class="input" type="text" value={{row.corrplot}} name="corrplot" /></td>
+                          <td style="padding-top: 5px;">
+                            <div class="buttons ">
+                              <div class="field is-grouped">
+                                <p class="control">
+                            <button style="font-size: 13px;" type="submit" (click)="accept(row.name,row.dob,row.dod,row.plot,row.corrname,row.corrdob,row.corrdod,row.corrplot)" class="button is-success is-normal" >Terima</button></p>
+                            <p class="control">
+                            <button style="font-size: 13px;" type="submit" (click)="reject(row.name,row.dob,row.dod,row.plot,row.corrname,row.corrdob,row.corrdod,row.corrplot)" class="button is-danger is-normal" >Tolak</button> </p>
+                          </div>
+                          </div>
+                          </td>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          </div>
+        </main> 
+
+
+   
+  

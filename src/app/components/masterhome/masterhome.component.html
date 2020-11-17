@@ -1,0 +1,113 @@
+
+<!-- Master Header -->
+<nav class="navbar is-success">
+  <!-- logo -->
+  <div class="navbar-brand">
+
+  <div class="logo">
+    <a class="navbar-item" routerLink="/masterhome">
+      <img src="assets/img/logo4.png" />
+    </a>
+  </div>
+
+    <a (click)="toggleNavbar()" role="button" #navBurger class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu" #navMenu>
+    <div class="navbar-start">
+      <a class="navbar-item is-spaced" routerLink="/masterhome">
+        Permohonan Baru
+      </a>
+
+      <a class="navbar-item is-spaced" routerLink="/enquiry">
+        Pertanyaan
+      </a>
+    </div>
+  </div>  
+
+  <div id="navbarBasicExample" class="navbar-menu" #navMenu>
+    <div class="navbar-end">
+      <span class="navbar-item" routerLink="/">
+              <a class="button is-danger is-light is-rounded is-focused">
+                <span>Log Keluar</span>
+              </a>
+      </span>
+    </div>
+  </div>  
+</nav>
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Permohonan Baru Sebagai Admin</h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="column is-centered">
+    <table class="table">
+          <tr>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Nama Penuh</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Nama Pengguna</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Nombor Telefon</b></h3></th>
+          </tr>
+          
+          <tr *ngFor="let dynamic of data[0]">
+            <td>
+              <input disabled class="input" type="text" value={{dynamic.fullname}} name="fullname" /></td>
+            <td><input disabled class="input" type="text" value={{dynamic.username}} name="username" /></td>
+            <td><input disabled class="input" type="text" value={{dynamic.phone}} name="phone" /></td>
+            <td style="padding-top: 8px;">
+              <button type="submit" (click)="addRow(dynamic.fullname,dynamic.username,dynamic.email,dynamic.password,dynamic.phone, dynamic.job)" class="button is-success is-normal" >Terima</button>&nbsp;&nbsp;&nbsp;
+              <button type="submit" (click)="deleteRow(dynamic.fullname,dynamic.username,dynamic.email,dynamic.password,dynamic.phone, dynamic.job)" class="button is-danger is-normal" >Tolak</button> 
+            </td>
+          </tr>
+      </table>
+  </div>
+</div>
+
+<!-- <form [formGroup]="reactiveForm"> -->
+  <!-- <table class="table">
+    <tr>
+      <td style="text-align: center;padding-top: 20px;"><h3><b>Nama Penuh</b></h3></td>
+      <td style="text-align: center;padding-top: 20px;"><h3><b>Nama Pengguna</b></h3></td>
+      <td style="text-align: center;padding-top: 20px;"><h3><b>Nombor Telefon</b></h3></td>
+    </tr>
+
+    <tr *ngFor="let dynamic of data[0]">
+      <td>
+        <div class="field">
+          <input disabled class="input" type="text" value={{dynamic.fullname}} name="fullname" />
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <input disabled class="input" type="text" value={{dynamic.username}} name="username" />
+        </div>
+      </td>
+
+      <td>
+        <div class="field">
+          <input disabled class="input" type="text" name="phone" value={{dynamic.phone}} /> 
+        </div>
+      </td>&nbsp;&nbsp;
+
+      <td style="padding-top: 8px;">
+        <button type="submit" (click)="addRow(dynamic.fullname,dynamic.username,dynamic.email,dynamic.password,dynamic.phone, dynamic.job)" class="button is-success is-normal" >Terima</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+
+      <td style="padding-top: 8px;">
+        <button type="submit" (click)="deleteRow(dynamic.fullname,dynamic.username,dynamic.email,dynamic.password,dynamic.phone, dynamic.job)" class="button is-danger is-normal" >Tolak</button> 
+      </td>
+
+    </tr>
+  </table> -->
+<!-- </form> -->
+

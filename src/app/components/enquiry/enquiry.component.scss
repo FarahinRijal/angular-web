@@ -1,0 +1,38 @@
+.logo {
+    max-width: 100%;
+    height: auto;
+    width: auto;  
+}
+
+a {
+    font-family: Times, "Times New Roman", serif;
+    font-size:15px;
+}
+
+.title {
+    font-family: fantasy;
+    font-size:50px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    
+  }
+
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+label {
+    grid-column: 1 / 2;
+}
+
+input {
+    grid-column: 2 / 3;
+}
+.btn {
+    grid-column: 5 / 6;
+   
+}

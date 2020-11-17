@@ -1,0 +1,194 @@
+  <!-- User Header -->
+  <app-header [isUserLoggedIn]="false" ></app-header>
+
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">Carian Maklumat Kematian</h1>
+      </div>
+    </div>
+  </section>
+
+  <section  class="section">
+    <div class="columns  is-centered">
+      <div  class="column is-full">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="field">
+            <h1>Lokasi:</h1>
+              <select formControlName="location" class="form-control" (ngModelChange)="changeWebsite($event)">
+                <option disabled>Lokasi</option>
+                <option *ngFor="let loc of locList" [value]="loc">{{loc}}</option>
+              </select>
+          </div> 
+          <div *ngIf="f.location.touched && f.location.invalid" class="alert">
+            <h5 style="color:red; text-align: center;"><div *ngIf="f.location.errors.required">Lokasi diperlukan.</div></h5> 
+          </div>
+          <div class="field">
+            <input class="search" type="text" formControlName="name" placeholder="carian nama..">
+          </div>
+          <div class="field">
+            <button class="button is-primary" type="submit" [disabled]="!form.valid">Cari</button>
+          </div> 
+
+          <div class="container">
+            <div class="column is-centered">
+            <table class="table">
+              <tr  *ngFor="let currentName of response  | paginate:{itemsPerPage: 9, currentPage:p}">
+                <td>{{currentName.nama}}</td>
+                <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentName)">Info</button></td>
+              </tr>
+            </table> 
+            </div>  
+          </div>
+          
+          <div class="field"> 
+            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="" maxSize="10" responsive="true" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </section>
+
+  <div>
+    <dx-popup [width]="500" [height]="600" [showTitle]="true" title="Maklumat" [dragEnabled]="true" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+      <!-- <dx-scroll-view> -->
+      <div *dxTemplate="let data of 'content'">
+          <p *ngIf="isClicked">
+              Nama Penuh:
+              <span>{{currentName.nama}}</span>
+          </p>
+          <p *ngIf="isClicked">
+              Tarikh Lahir:
+              <span>{{currentName.dob | date: 'dd/MM/yyyy'}}</span>
+          </p>
+          <p *ngIf="isClicked">
+              Tarikh Kematian:
+              <span>{{currentName.dod | date: 'dd/MM/yyyy'}}</span>
+          </p>
+          <p *ngIf="isClicked">
+              Plot Kubur:
+              <span>{{currentName.plot}}</span>
+          </p>
+          <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">  
+            <!-- (ngSubmit)="update()"  -->
+            <!-- <div>
+              <label class="label" >Nama Penuh: </label>
+              <input class="input" type="text" name="nama" value="{{currentName.id}}">
+            </div> -->
+          <div>
+            <label class="label" >Nama Penuh: </label>
+            <!-- <input type="hidden" class="input" formControlName="nama"> -->
+            <label class="current" >{{currentName.nama}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrnama" >
+          </div>
+          <div>
+            <label class="label" >Tarikh Lahir: </label>
+            <input class="input" type="hidden" formControlName="dob">
+            <label class="current" >{{currentName.dob | date: 'dd/MM/yyyy'}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrdob" placeholder="dd/mm/yyyy">
+          </div>
+          <div>
+            <label class="label" >Tarikh Kematian: </label>
+            <input class="input" type="hidden" formControlName="dod">
+            <label class="current" >{{currentName.dod | date: 'dd/MM/yyyy'}}</label>
+          </div>
+          <!-- <div class="field">
+            <label class="label">Pembetulan</label>
+                  <div class="field is-expanded">
+                    <div class="field has-addons">
+                      <p class="control is-expanded">
+                          <kendo-datepicker formControlName="corrdod" [format]="format"></kendo-datepicker>
+                      </p>
+                    </div>
+                  </div> 
+          </div> -->
+          <!-- <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrdod"  placeholder="dd/mm/yyyy">
+          </div> -->
+          <div>
+            <label class="label" >Plot Kubur: </label>
+            <input class="input" type="hidden" formControlName="plot">
+            <label class="current" >{{currentName.plot}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrplot" >
+          </div>
+        <br/>
+          <div class="buttons">
+            <button style="font-size: 12px" type="submit" class="button is-primary is-normal">Simpan</button>
+            <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="backTogle()">Batal</button>
+          </div>
+        </form>
+
+        <!-- <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">
+          <div>
+            <label>
+              <span>Full name</span>
+              <input type="text" class="input" formControlName="name" >
+            </label>
+            <div formGroupName="event">
+              <label>
+                <span>Event title</span>
+                <input type="text" class="input" formControlName="title">
+              </label>
+              <label>
+                <span>Event location</span>
+                <input type="text" class="input" formControlName="location">
+              </label>
+            </div>
+          </div>
+          <div>
+            <button type="submit" [disabled]="form.invalid">
+              Submit
+            </button>
+          </div>
+        </form> -->
+      
+          <p *ngIf="isClicked">
+            
+            <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
+            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="edit(currentName.id)">Kemaskini</button>&nbsp; -->
+            <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="lokasi()">Lokasi</button>
+          </p>
+        &nbsp;
+          <p *ngIf="!isClicked">
+            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="update(nama,dob,dod,plot,currentName.corrnama,currentName.corrdob,currentName.corrdod,currentName.corrplot)">Simpan Data</button>&nbsp; -->
+            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="backTogle()">Batal</button> -->
+          </p>
+      </div> 
+    <!-- </dx-scroll-view>    -->
+    </dx-popup>
+  </div>
+
+  <!-- freakyjolly.com -->
+  <!-- <div>
+    <mat-form-field>
+      <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let movie of filteredMovies" [value]="movie.name">
+            <span><b>{{movie.name}}</b> ({{movie.plot}})</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+  
+    <br/>
+  
+    <ng-container *ngIf="errorMsg; else elseTemplate">
+      {{errorMsg}}
+    </ng-container>
+    <ng-template #elseTemplate>
+      <h5>Selected Value: {{searchMoviesCtrl.value}}</h5>
+    </ng-template> 
+  </div> -->
+<!-- freakyjolly.com -->

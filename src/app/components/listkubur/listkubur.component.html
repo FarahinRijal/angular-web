@@ -1,0 +1,175 @@
+
+    <app-header [isUserLoggedIn]="true" ></app-header>
+    
+    <div class="section">
+      <div class="columns">
+        <aside class="column is-2">
+          <nav class="menu">
+            <div class="menu-label">
+              General
+            </div>
+            <ul class="menu-list">
+              <li><a href="/adminhome">Dashboard</a></li>
+            </ul>
+            <p class="menu-label">
+              Administration
+            </p>
+            <ul class="menu-list">
+              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a href="/semakandata" >Semakan Data</a></li>
+              <li><a href="/listkubur" >Senarai Kematian</a></li>
+            </ul>
+            <p class="menu-label">
+              User
+            </p>
+            <ul class="menu-list">
+              <li><a href="/laporandata" >Laporan Data</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- FORM -->
+        <main class="column">
+          <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title has-text-centered">Senarai Kematian</h1>
+              </div>
+            </div>
+          </section>
+          <br/>
+  
+          <div class="columns is-multiline">
+            <div class="column">
+              <div class="columns is-centered">
+                <div class="column is-two-thirds">
+                  <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="field">
+                      <h2>Lokasi:</h2>
+                        <select formControlName="location" class="form-control" (ngModelChange)="changeWebsite($event)">
+                          <option disabled>Lokasi</option>
+                          <option *ngFor="let loc of locList" [value]="loc">{{loc}}</option>
+                        </select>
+                    </div>                
+                      <br/>
+                    <div *ngIf="f.location.touched && f.location.invalid" class="alert alert-danger">
+                      <h5><div *ngIf="f.location.errors.required">Lokasi diperlukan.</div></h5> 
+                    </div>
+                    <div class="field">
+                      <input class="search" type="text" formControlName="name" placeholder="search by name.."> 
+                    </div>
+                    <div class="field">
+                      <button class="button is-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                    </div> 
+          
+                    <div class="container">
+                      <div class="column is-centered">
+                      <table class="table">
+                        <tr  *ngFor="let currentEmployee of response  | paginate:{itemsPerPage: 9, currentPage:p}">
+                          <td>{{currentEmployee.nama}}</td>
+                          <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentEmployee)">Info</button></td>
+                        </tr>
+                      </table> 
+                      </div>  
+                    </div>
+                    
+                    <div class="field"> 
+                      <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="" maxSize="10" responsive="true" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+                    </div>
+                  </form> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div> 
+    
+    <div>
+      <dx-popup
+        [width]="400"
+        [height]="400"
+        [showTitle]="true"
+        title="Maklumat"
+        [dragEnabled]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+            <p *ngIf="isClicked">
+                Nama Penuh:
+                <span>{{currentEmployee.nama}}</span>
+            </p>
+            <p *ngIf="isClicked">
+                Tarikh Lahir:
+                <span>{{currentEmployee.dob}}</span>
+            </p>
+            <p *ngIf="isClicked">
+                Tarikh Kematian:
+                <span>{{currentEmployee.dod}}</span>
+            </p>
+            <p *ngIf="isClicked">
+                Plot Kubur:
+                <span>{{currentEmployee.plot}}</span>
+            </p>
+            <form *ngIf="!isClicked">  
+            <div>
+              <label class="label" >Nama Penuh: </label>
+              <input class="input" type="text" name="nama" value="{{currentEmployee.nama}}">
+            </div>
+            <div>
+              <label class="label" >Tarikh Lahir: </label>
+              <input class="input" type="text" name="dob" value="{{currentEmployee.dob}}">
+            </div>
+            <div>
+              <label class="label" >Tarikh Kematian: </label>
+              <input class="input" name="dod" value="{{currentEmployee.dod}}">
+            </div>
+            <div>
+              <label class="label" >Plot Kubur: </label>
+              <input class="input" name="plot" value="{{currentEmployee.plot}}">
+            </div>
+          </form>
+          
+            <p *ngIf="isClicked">
+              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
+              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="lokasi()">Lokasi</button>
+            </p>
+          &nbsp;
+            <p *ngIf="!isClicked">
+              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="update(currentEmployee.nama,currentEmployee.dob,currentEmployee.dod,currentEmployee.plot,currentEmployee.corrnama,currentEmployee.corrdob,currentEmployee.corrdod,currentEmployee.corrplot)">Simpan Data</button>&nbsp;
+              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="backTogle()">Batal</button>
+            </p>
+        </div>    
+      </dx-popup>
+    </div>
+      
+
+
+<!-- <div class="col-md-6 user-container">
+    <h2 style="margin: auto"> User Details</h2>
+    <button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>UserName</th>
+        <th>Age</th>
+        <th>Salary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td class="hidden"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-success" (click)="deleteUser(user)"> Delete</button>
+          <button class="btn btn-success" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div> -->

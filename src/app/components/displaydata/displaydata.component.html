@@ -1,0 +1,167 @@
+
+<app-header [isUserLoggedIn]="false" ></app-header>
+
+<br />
+<div class="container">
+  <div class="column is-centered">
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <!-- <th>Tarikh Kelahiran</th>
+          <th>Tarikh Kematian</th>
+          <th>Plot Kubur</th>   
+          <th>Info</th>          -->
+        </tr>
+        
+        <tr *ngFor="let mydata of data[0] | paginate:{itemsPerPage: 9, currentPage:p}">
+          <td>{{mydata.nama}}</td>
+          <!-- <td>{{mydata.dob}}</td>
+          <td>{{mydata.dod}}</td>
+          <td>{{mydata.plot}}</td> -->
+          <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(mydata)">Info</button></td>
+        </tr>
+    </table>
+    <!-- <dx-popup
+    [width]="300"
+    [height]="250"
+    [showTitle]="true"
+    title="Maklumat"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p>
+            Nama Penuh:
+            <span>{{currentEmployee.nama}}</span>
+        </p>
+        <p>
+            Tarikh Lahir:
+            <span>{{currentEmployee.dob}}</span>
+        </p>
+        <p>
+            Tarikh Kematian:
+            <span>{{currentEmployee.dod}}</span>
+        </p>
+        <p>
+            Plot Kubur:
+            <span>{{currentEmployee.plot}}</span>
+        </p>
+        <p>
+          <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="isClicked = !isClicked">Kemaskini</button>
+        </p>
+    </div>
+</dx-popup> -->
+
+<div>
+  <dx-popup
+    [width]="400"
+    [height]="400"
+    [showTitle]="true"
+    title="Maklumat"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <p *ngIf="isClicked">
+            Nama Penuh:
+            <span>{{currentEmployee.nama}}</span>
+        </p>
+        <p *ngIf="isClicked">
+            Tarikh Lahir:
+            <span>{{currentEmployee.dob}}</span>
+        </p>
+        <p *ngIf="isClicked">
+            Tarikh Kematian:
+            <span>{{currentEmployee.dod}}</span>
+        </p>
+        <p *ngIf="isClicked">
+            Plot Kubur:
+            <span>{{currentEmployee.plot}}</span>
+        </p>
+        <!-- <p *ngIf="!isClicked">
+          Nama:
+          <span>{{currentEmployee.nama}}</span>
+      </p>
+      <p *ngIf="!isClicked">
+          Tarikh:
+          <span>{{currentEmployee.dob}}</span>
+      </p>
+      <p *ngIf="!isClicked">
+          Tarikh Kematian:
+          <span>{{currentEmployee.dod}}</span>
+      </p>
+      <p *ngIf="!isClicked">
+          Plot Kubur:
+          <span>{{currentEmployee.plot}}</span>
+      </p> -->
+      <!-- <form *ngIf="!isClicked" [formGroup]="submitForm" (ngSubmit)="submit()"> -->
+        <form *ngIf="!isClicked">  
+        <div>
+          <label class="label" >Nama Penuh: </label>
+          <input class="input" type="text" name="nama" value="{{currentEmployee.nama}}">
+        </div>
+        <div>
+          <label class="label" >Tarikh Lahir: </label>
+          <input class="input" type="text" name="dob" value="{{currentEmployee.dob}}">
+        </div>
+        <div>
+          <label class="label" >Tarikh Kematian: </label>
+          <input class="input" name="dod" value="{{currentEmployee.dod}}">
+        </div>
+        <div>
+          <label class="label" >Plot Kubur: </label>
+          <input class="input" name="plot" value="{{currentEmployee.plot}}">
+        </div>
+        <!-- <div>
+          <label class="label" >Nama Pelapor: </label>
+          <input class="input" name="userid" >
+        </div>
+        <div>
+          <label class="label" >Nombor Telefon: </label>
+          <input class="input" name="phone" >
+        </div> -->
+        
+      </form>
+
+        <p *ngIf="isClicked">
+          <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
+          <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="lokasi()">Lokasi</button>
+        </p>
+      &nbsp;
+        <p *ngIf="!isClicked">
+          <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="update(currentEmployee.nama,currentEmployee.dob,currentEmployee.dod,currentEmployee.plot,currentEmployee.corrnama,currentEmployee.corrdob,currentEmployee.corrdod,currentEmployee.corrplot)">Simpan Data</button>&nbsp;
+          <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="backTogle()">Batal</button>
+        </p>
+    </div>    
+</dx-popup>
+</div>
+    <!-- <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Tarikh Kelahiran</th>
+            <th>Tarikh Kematian</th>
+            <th>Plot Kubur</th>   
+            <th>Kemaskini</th>         
+          </tr>
+          
+          <tr *ngFor="let mydata of data[0] | paginate:{itemsPerPage: 9, currentPage:p}">
+            <td>{{mydata.nama}}</td>
+            <td>{{mydata.dob}}</td>
+            <td>{{mydata.dod}}</td>
+            <td>{{mydata.plot}}</td>
+            <td><button style="font-size: 10px;" type="submit" class="button is-primary is-normal" (click)="update()">Kemaskini</button></td>
+            <div class="col-md-4">
+              <input type="button"
+                     value="Update"
+                     class="btn btn-success btn-sm"
+                     (click)="updateKubur(nama, dob, dod, plot)">
+            </div>
+          </tr>
+      </table> -->
+  </div>
+</div>
+<div class="page"> 
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel="" maxSize="10" responsive="true" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+</div>
+
+

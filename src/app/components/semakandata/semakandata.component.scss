@@ -1,0 +1,28 @@
+DIV.table 
+{
+    display:table;
+}
+FORM.tr, DIV.tr
+{
+    display:table-row;
+}
+SPAN.td
+{
+    display:table-cell;
+    border: 1px solid white;
+    padding: 5px;
+
+}
+
+SPAN.th
+{
+    display:table-cell;
+    text-align: center;
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.title {
+    font-family: fantasy;
+    font-size:40px;
+}

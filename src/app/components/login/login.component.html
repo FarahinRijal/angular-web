@@ -1,0 +1,62 @@
+<section class="hero  is-link ">
+    <div class="hero-head">
+    <a class="navbar-item" routerLink="/">
+    <img src="assets/img/logo4.png" />
+  </a>
+    </div>
+  </section>
+
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">Log Masuk Pengguna!</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+    <div class="alert alert-warning" *ngIf='invalidLogin'>{{ errorMessage }}</div>
+      <form [formGroup]="reactiveForm" (ngSubmit)="doLogin()">
+        <div class="field">
+          <label class="label">Nama Pengguna</label>
+          <input class="input"
+                  type="text"
+                  formControlName="username" 
+                  [class.invalid]="!reactiveForm.controls.username.valid && reactiveForm.controls.username.dirty">
+                <p class="errorMessage" *ngIf="!reactiveForm.controls.username.hasError('required') && reactiveForm.controls.username.hasError('maxlength') 
+                  && (reactiveForm.controls.username.dirty)">Maksimum 12 karakter.
+                </p>
+            
+            <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.username.hasError('required') && (reactiveForm.controls.username.dirty)">
+            Sila isi nama pengguna
+            </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Kata Laluan</label>
+          <input class="input"
+                 type="password"
+                 formControlName="password"
+                 [class.invalid]="!reactiveForm.controls.password.valid && reactiveForm.controls.password.dirty">
+          <p class="errorMessage" *ngIf="!reactiveForm.controls.password.hasError('required') && reactiveForm.controls.password.hasError('maxlength') 
+            && (reactiveForm.controls.password.dirty)">Maksimum 12 karakter.
+          </p>
+          
+          <p style="color:red;" class="errorMessage" *ngIf="reactiveForm.controls.password.hasError('required') && (reactiveForm.controls.password.dirty)">
+          Sila isi kata laluan
+          </p>  
+        </div>
+        
+        <div class="buttons is-centered">
+          <button type="submit" [disabled]="!reactiveForm.valid" class="button is-primary">Log Masuk</button>
+        </div>
+
+        <div class="buttons is-centered">
+          <a routerLink="/register">Belum mendaftar sebagai admin?</a>
+        </div>
+      </form>      
+    </div>
+  </div>
+</section>

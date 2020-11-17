@@ -1,0 +1,140 @@
+
+    <app-header [isUserLoggedIn]="true" ></app-header>
+    
+    <div class="section">
+      <div class="columns">
+        <aside class="column is-2">
+          <nav class="menu">
+            <p class="menu-label">
+              General
+            </p>
+            <ul class="menu-list">
+              <li><a href="/adminhome">Dashboard</a></li>
+            </ul>
+            <p class="menu-label">
+              Administration
+            </p>
+            <ul class="menu-list">
+              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a href="/semakandata" >Semakan Data</a></li>
+              <li><a href="/listkubur" >Senarai Kematian</a></li>
+            </ul>
+            <p class="menu-label">
+              User
+            </p>
+            <ul class="menu-list">
+              <li><a href="/laporandata" >Laporan Data</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- FORM -->
+        <main class="column">
+          <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title has-text-centered">Semakan Data bagi Pendaftaran Baru Kematian</h1>
+              </div>
+            </div>
+          </section>
+          <br/>
+      
+          <div class="columns is-multiline">
+            <div class="column">
+              <div class="columns is-centered">
+                <div class="column is-two-thirds">
+                  <table class="table table-responsive table-striped" style="width: 100%;">
+                        <tr>
+                            <th style="text-align: center;"><h3><b>Nama Pendaftar</b></h3></th> <br/>
+                            <th style="text-align: center;"><h3><b>Nama Si Mati</b></h3></th> <br/>
+                            <th style="text-align: center;"><h3><b>Tarikh Lahir</b></h3></th> <br/>
+                            <th style="text-align: center;"><h3><b>Tarikh Kematian</b></h3></th> <br/>
+                            <th style="text-align: center;"><h3><b>Plot</b></h3></th> <br/>
+                        </tr>
+                        <tr *ngFor="let row of data[0]">
+                            <td style="text-align: center;">{{row.userid}}</td> <br/>
+                            <td style="text-align: center;">{{row.name}}</td> <br/>
+                            <td style="text-align: center;">{{row.dob | date: 'dd-MM-yyyy'}}</td> <br/>
+                            <td style="text-align: center;">{{row.dod | date: 'dd-MM-yyyy'}}</td> <br/>
+                            <td style="text-align: center;">{{row.plot}}</td> <br/>
+                            <td>
+                              <div class="field is-grouped">
+                                <p class="control">
+                            <button style="font-size: 13px;" type="submit" (click)="accept(row.userid,row.name,row.dob,row.dod,row.plot,row.location)" class="button is-success is-normal" >Terima</button></p>
+                            <p class="control">
+                            <button style="font-size: 13px;" type="submit" (click)="reject(row.userid,row.name,row.dob,row.dod,row.plot)" class="button is-danger is-normal" >Tolak</button> </p></div>
+                            </td>
+                        </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main> 
+      </div>
+    </div>    
+
+    
+<!-- <app-header [isUserLoggedIn]="true" ></app-header>
+    <aside class="column is-2">
+      <nav class="menu">
+        <p class="menu-label">
+          General
+        </p>
+        <ul class="menu-list">
+          <li><a href="/adminhome">Dashboard</a></li>
+        </ul>
+        <p class="menu-label">
+          Administration
+        </p>
+        <ul class="menu-list">
+          <li><a href="/daftarkubur" >Daftar Kematian</a></li>
+          <li><a href="/semakandata" >Semakan Data</a></li>
+          <li><a href="/listkubur" >Senarai Kematian</a></li>
+        </ul>
+        <p class="menu-label">
+          User
+        </p>
+        <ul class="menu-list">
+          <li><a href="/laporandata" >Laporan Data</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Pending Request as Admin</h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="column is-centered">
+    <table class="table">
+          <tr>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Nama Pendaftar</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Nama Si Mati</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Tarikh Lahir</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Tarikh Kematian</b></h3></th>
+            <th style="text-align: center;padding-top: 20px;"><h3><b>Plot</b></h3></th>
+          </tr>
+          
+          <tr *ngFor="let row of data[0]">
+            <td>
+              <input disabled class="input" type="text" value={{row.userid}} name="userid" /></td>
+            <td><input disabled class="input" type="text" value={{row.name}} name="name" /></td>
+            <td><input disabled class="input" type="text" value={{row.dob}} name="dob" /></td>
+            <td><input disabled class="input" type="text" value={{row.dod}} name="dod" /></td>
+            <td><input disabled class="input" type="text" value={{row.plot}} name="plot" /></td>
+            <td style="padding-top: 8px;">
+              <button type="submit" (click)="addRow(row.userid,row.name,row.dob,row.dod,row.plot)" class="button is-success is-normal" >Terima</button>&nbsp;&nbsp;&nbsp;
+              <button type="submit" (click)="deleteRow(row.userid,row.name,row.dob,row.dod,row.plot)" class="button is-danger is-normal" >Tolak</button> 
+            </td>
+          </tr>
+      </table>
+  </div>
+</div> -->
+
+
+
