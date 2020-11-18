@@ -1,9 +1,8 @@
-import { Component, OnInit, NgZone, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MapsAPILoader } from '@agm/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../shared/api-service';
-import { Data, Router, ActivatedRoute } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { Employee } from 'src/app/app.service';
 
 // interface Student {
@@ -144,21 +143,30 @@ submit(){
     console.log("updated data",edit);
       this.ApiService.correction(edit.nama,edit.dob,edit.dod,edit.plot,edit.corrnama,edit.corrdob,edit.corrdod,edit.corrplot,edit.id).subscribe(result => {
       console.log("result");
-      console.log(result);
-      const allInfo = `Laporan ${name} berjaya dihantar!`;
-      alert(allInfo);
-      // window.location.reload();
+      console.log(result['message']);
+
+      // const allInfo ='';
+      if(result['message']=='success'){
+         const allInfo = `Laporan ${oldname} berjaya dihantar!`;
+         alert(allInfo);
+         window.location.reload();
+      }
+      else{
+        const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+        alert(allInfo);
+        window.location.reload();
+      }
       this.router.navigate(['/search-form']);
+      // alert(allInfo);
+      // window.location.reload();
+      // this.router.navigate(['/search-form']);
       },
       error => {
         console.log("error: ",error.status);
-      //   console.log("data: ",this.updateForm.value);
-        
-      //   if(error.status==200){
-      //   const allInfo = `Laporan ${name} berjaya dihantar!`;
-      //   alert(allInfo);
-      //   this.router.navigate(['/search-form']);
-      //   }
+        const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+        alert(allInfo);
+        // window.location.reload();
+        this.router.navigate(['/search-form']);
       })
   }
   

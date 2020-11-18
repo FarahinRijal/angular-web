@@ -86,60 +86,76 @@
     </div> 
     
     <div>
-      <dx-popup
-        [width]="400"
-        [height]="400"
-        [showTitle]="true"
-        title="Maklumat"
-        [dragEnabled]="false"
-        [closeOnOutsideClick]="true"
-        [(visible)]="popupVisible">
+      <dx-popup [width]="500" [height]="600" [showTitle]="true" title="Maklumat" [dragEnabled]="true" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
         <div *dxTemplate="let data of 'content'">
             <p *ngIf="isClicked">
                 Nama Penuh:
-                <span>{{currentEmployee.nama}}</span>
+                <span>{{currentName.nama}}</span>
             </p>
             <p *ngIf="isClicked">
                 Tarikh Lahir:
-                <span>{{currentEmployee.dob}}</span>
+                <span>{{currentName.dob | date: 'dd/MM/yyyy'}}</span>
             </p>
             <p *ngIf="isClicked">
                 Tarikh Kematian:
-                <span>{{currentEmployee.dod}}</span>
+                <span>{{currentName.dod | date: 'dd/MM/yyyy'}}</span>
             </p>
             <p *ngIf="isClicked">
                 Plot Kubur:
-                <span>{{currentEmployee.plot}}</span>
+                <span>{{currentName.plot}}</span>
             </p>
-            <form *ngIf="!isClicked">  
+            <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">  
             <div>
               <label class="label" >Nama Penuh: </label>
-              <input class="input" type="text" name="nama" value="{{currentEmployee.nama}}">
+              <label class="current" >{{currentName.nama}}</label>
+            </div>
+            <div>
+              <label class="label" >Pembetulan: </label>
+              <input type="text" class="input" formControlName="corrnama" >
             </div>
             <div>
               <label class="label" >Tarikh Lahir: </label>
-              <input class="input" type="text" name="dob" value="{{currentEmployee.dob}}">
+              <input class="input" type="hidden" formControlName="dob">
+              <label class="current" >{{currentName.dob | date: 'dd/MM/yyyy'}}</label>
+            </div>
+            <div>
+              <label class="label" >Pembetulan: </label>
+              <dx-date-box type="date"  formControlName="corrdob" pickerType="rollers"></dx-date-box>
             </div>
             <div>
               <label class="label" >Tarikh Kematian: </label>
-              <input class="input" name="dod" value="{{currentEmployee.dod}}">
+              <input class="input" type="hidden" formControlName="dod">
+              <label class="current" >{{currentName.dod | date: 'dd/MM/yyyy'}}</label>
+            </div>
+            <div>
+              <label class="label" >Pembetulan: </label>
+              <dx-date-box type="date"  formControlName="corrdod" pickerType="rollers"></dx-date-box>
             </div>
             <div>
               <label class="label" >Plot Kubur: </label>
-              <input class="input" name="plot" value="{{currentEmployee.plot}}">
+              <input class="input" type="hidden" formControlName="plot">
+              <label class="current" >{{currentName.plot}}</label>
+            </div>
+            <div>
+              <label class="label" >Pembetulan: </label>
+              <input type="text" class="input" formControlName="corrplot" >
+            </div>
+          <br/>
+            <div class="buttons">
+              <button style="font-size: 12px" type="submit" class="button is-primary is-normal">Simpan</button>
+              <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="backTogle()">Batal</button>
             </div>
           </form>
-          
+
             <p *ngIf="isClicked">
-              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
-              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="lokasi()">Lokasi</button>
+              
+              <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
+              <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="lokasi()">Lokasi</button>
             </p>
           &nbsp;
             <p *ngIf="!isClicked">
-              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="update(currentEmployee.nama,currentEmployee.dob,currentEmployee.dod,currentEmployee.plot,currentEmployee.corrnama,currentEmployee.corrdob,currentEmployee.corrdod,currentEmployee.corrplot)">Simpan Data</button>&nbsp;
-              <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="backTogle()">Batal</button>
             </p>
-        </div>    
+        </div> 
       </dx-popup>
     </div>
       

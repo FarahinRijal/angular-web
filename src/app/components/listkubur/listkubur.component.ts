@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../shared/api-service';
 import { NavigationEnd, Router, Data } from '@angular/router';
 import { Employee } from 'src/app/app.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-listkubur',
@@ -17,7 +16,7 @@ export class ListKuburComponent implements OnInit, OnDestroy {
   response = [];
   @Input() public isClicked: boolean;
   p: number = 1;
-  currentEmployee: Data = new Employee();
+  currentName: Data = new Employee();
   data = [];
   popupVisible = false;
   submitForm: FormGroup;
@@ -29,6 +28,17 @@ export class ListKuburComponent implements OnInit, OnDestroy {
   location: new FormControl('', Validators.required),
   name: new FormControl('', Validators.required)
  });
+
+ updateForm = new FormGroup({
+  nama : new FormControl('', Validators.required),
+  dob : new FormControl('', Validators.required),
+  dod : new FormControl('', Validators.required),
+  plot : new FormControl('', Validators.required),
+  corrnama: new FormControl('', Validators.required),
+  corrdob:new FormControl('', Validators.required),
+  corrdod: new FormControl('', Validators.required),
+  corrplot: new FormControl('', Validators.required),
+});
    
  get f(){
    return this.form.controls;
@@ -119,28 +129,59 @@ export class ListKuburComponent implements OnInit, OnDestroy {
   }
 
 show(kubur){
-  console.log("data->", this.currentEmployee);    
-  this.currentEmployee = kubur;
+  console.log("data->", this.currentName);    
+  this.currentName = kubur;
   this.popupVisible = true;
 }
 
-update(nama,dob,dod,plot,corrnama,corrdob,corrdod,corrplot){
-  console.log("kemaskini",this.data);
-    this.ApiService.correctionkubur(nama,dob,dod,plot,corrnama,corrdob,corrdod,corrplot).subscribe(result => {
-    console.log("result");
-    console.log(result)
-    },
-    error => {
-      console.log("error: ",error.status);
-      console.log("data: ",this.currentEmployee);
-      
-      if(error.status==200){
-      const allInfo = `Laporan ${nama} berjaya dihantar!`;
-      alert(allInfo);
-      this.router.navigate(['/listkubur']);
-      }
-    })
-}
+  // update(corrname,corrdob,corrdod,corrplot){
+    update(){
+      console.log("old data ->",this.currentName);
+      let oldname = this.currentName.nama;
+      let olddob = this.currentName.dob;
+      let olddod = this.currentName.dod;
+      let oldplot = this.currentName.plot;
+      let testkubur_id = this.currentName.id;
+      // console.log("nama lama:", oldname);
+      // console.log("dob lama:", olddob);
+      // console.log("dod lama:", olddod);
+      // console.log("plot lama:", oldplot);
+      // console.log("id lama:", testkubur_id);
+      this.updateForm.value.nama = oldname;
+      this.updateForm.value.dob = olddob;
+      this.updateForm.value.dod = olddod;
+      this.updateForm.value.plot = oldplot;
+      this.updateForm.value.id = testkubur_id;
+      let edit = this.updateForm.value;
+      console.log("updated data",edit);
+        this.ApiService.correction(edit.nama,edit.dob,edit.dod,edit.plot,edit.corrnama,edit.corrdob,edit.corrdod,edit.corrplot,edit.id).subscribe(result => {
+          console.log("result");
+          console.log(result['message']);
+    
+          // const allInfo ='';
+          if(result['message']=='success'){
+             const allInfo = `Laporan ${oldname} berjaya dihantar!`;
+             alert(allInfo);
+             window.location.reload();
+          }
+          else{
+            const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+            alert(allInfo);
+            window.location.reload();
+          }
+          this.router.navigate(['/listkubur']);
+          // alert(allInfo);
+          // window.location.reload();
+          // this.router.navigate(['/search-form']);
+          },
+          error => {
+            console.log("error: ",error.status);
+            const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+            alert(allInfo);
+            // window.location.reload();
+            this.router.navigate(['/search-form']);
+          })
+    }
 
 
 public toggle(): void { 

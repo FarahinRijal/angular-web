@@ -59,9 +59,9 @@ export class LaporandataComponent {
         }
       }
 
-  accept(name,dob, dod, plot,corrname, corrdob, corrdod, corrplot,testkubur_id) {
-    console.log("accept -> user id", testkubur_id );
-    this.ApiService.acceptlaporan(name,dob, dod, plot,corrname, corrdob, corrdod, corrplot,testkubur_id).subscribe(result => {
+  accept(id,name,dob, dod, plot,corrname, corrdob, corrdod, corrplot,testkubur_id) {
+    console.log("accept -> id", id );
+    this.ApiService.acceptlaporan(id,name,dob, dod, plot,corrname, corrdob, corrdod, corrplot,testkubur_id).subscribe(result => {
     console.log("result");
     console.log(result)
     const allInfo = `${name}, laporan diterima!`;

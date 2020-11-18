@@ -91,27 +91,19 @@
           </div>
           <div>
             <label class="label" >Pembetulan: </label>
-            <input type="text" class="input" formControlName="corrdob" placeholder="dd/mm/yyyy">
+            <dx-date-box type="date"  formControlName="corrdob" pickerType="rollers"></dx-date-box>
+            <!-- <input type="text" class="input" formControlName="corrdob" placeholder="dd/mm/yyyy"> -->
           </div>
           <div>
             <label class="label" >Tarikh Kematian: </label>
             <input class="input" type="hidden" formControlName="dod">
             <label class="current" >{{currentName.dod | date: 'dd/MM/yyyy'}}</label>
           </div>
-          <!-- <div class="field">
-            <label class="label">Pembetulan</label>
-                  <div class="field is-expanded">
-                    <div class="field has-addons">
-                      <p class="control is-expanded">
-                          <kendo-datepicker formControlName="corrdod" [format]="format"></kendo-datepicker>
-                      </p>
-                    </div>
-                  </div> 
-          </div> -->
-          <!-- <div>
+          <div>
             <label class="label" >Pembetulan: </label>
-            <input type="text" class="input" formControlName="corrdod"  placeholder="dd/mm/yyyy">
-          </div> -->
+            <dx-date-box type="date"  formControlName="corrdod" pickerType="rollers"></dx-date-box>
+            <!-- <input type="text" class="input" formControlName="corrdod"  placeholder="dd/mm/yyyy"> -->
+          </div>
           <div>
             <label class="label" >Plot Kubur: </label>
             <input class="input" type="hidden" formControlName="plot">

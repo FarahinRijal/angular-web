@@ -19,7 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {DataTablesModule} from 'angular-datatables';
-import { DxDataGridModule, DxPopupModule, DxButtonModule, DxTemplateModule, DxSelectBoxModule, DxListModule, DxScrollViewModule } from 'devextreme-angular';
+import { DxDataGridModule, DxPopupModule, DxButtonModule, DxTemplateModule, DxSelectBoxModule, DxListModule, DxScrollViewModule, DxDateBoxModule } from 'devextreme-angular';
 // import { FlxUiDataTable, FlxUiDatatableModule } from 'flx-ui-datatable';
 
 import { AppComponent } from './app.component';
@@ -131,7 +131,8 @@ import { EnquiryComponent } from './components/enquiry/enquiry.component';
     DxTemplateModule,
     DxSelectBoxModule,
     DxListModule,
-    DxScrollViewModule
+    DxScrollViewModule,
+    DxDateBoxModule
 
   ],
 

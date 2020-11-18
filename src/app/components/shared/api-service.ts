@@ -135,8 +135,9 @@ export class ApiService {
     } 
 
      //ACCEPT LAPORAN DATA KEMATIAN
-     acceptlaporan(name:string, dob:string, dod:string, plot:string, corrname:string, corrdob:string, corrdod:string, corrplot:string, testkubur_id:number) {
+     acceptlaporan(id: number, name:string, dob:string, dod:string, plot:string, corrname:string, corrdob:string, corrdod:string, corrplot:string, testkubur_id:number) {
       var body = {
+        id: id,
         nama: name,
         dob: dob,
         dod: dod,
