@@ -63,20 +63,24 @@ export class LaporandataComponent {
     console.log("accept -> id", id );
     this.ApiService.acceptlaporan(id,name,dob, dod, plot,corrname, corrdob, corrdod, corrplot,testkubur_id).subscribe(result => {
     console.log("result");
-    console.log(result)
+    console.log(result['message'])
     const allInfo = `${name}, laporan diterima!`;
     alert(allInfo);
     this.router.navigate(['/laporandata']);
     },
     error => {
-      console.log("error:");
-      console.log(error.status);
       
-      if(error.status==200){
+      console.log("error:", error);
+      //skip error,sbb tk lalu result
       const allInfo = `${name}, laporan diterima!`;
       alert(allInfo);
       this.router.navigate(['/laporandata']);
-      }
+      
+      // if(error.status==200){
+      // const allInfo = `${name}, laporan diterima!`;
+      // alert(allInfo);
+      // this.router.navigate(['/laporandata']);
+      // }
     }
    )
    }

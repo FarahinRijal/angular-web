@@ -162,9 +162,9 @@ submit(){
       // this.router.navigate(['/search-form']);
       },
       error => {
-        console.log("error: ",error.status);
-        const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
-        alert(allInfo);
+        console.log("error: ",error);
+        // const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+        // alert(allInfo);
         // window.location.reload();
         this.router.navigate(['/search-form']);
       })

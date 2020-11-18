@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-	$con = mysqli_connect('localhost','u570110870_geopusara20','Geopusara@20','u570110870_geopusara');
+	$con = mysqli_connect('localhost','root','','id10505005_geopusara');
 
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
@@ -17,16 +17,18 @@ if ($con->connect_error) {
     $acceptdob = $data->dob;
     $acceptdod = $data->dod;
     $acceptplot = $data->plot;
+
+    $id = $data->id;
     // $acceptuserid = $data->userid;
 
     $insertcorrname = $data->corrnama;
     $insertcorrdob = $data->corrdob;
     $insertcorrdod = $data->corrdod;
     $insertcorrplot = $data->corrplot;
-    $insertuserid = $data->userid;
     $status = "approved";
-
     $inserttestkubur_id = $data->testkubur_id;
+
+    echo ($inserttestkubur_id);
 
     // update laporandata_new where id=userid 
     // - set fields to new data
@@ -43,7 +45,7 @@ if ($con->connect_error) {
         plot = '".$acceptplot."',
         corrplot = '".$insertcorrplot."',
         status = '".$status."'
-        WHERE id='".$insertuserid."'";
+        WHERE Id='".$id."'";
     // $namecheck = mysqli_query($con,$namecheckquerry) or die ("2: name check querry failed");
 
     if (mysqli_query($con, $namecheckquerry)) {
@@ -51,7 +53,36 @@ if ($con->connect_error) {
               // echo ($inserttestkubur_id);
              // update test kubur
 
-                //TUKAR testkubur to kuburbaru
+        if ( $insertcorrname == NULL && $insertcorrdob == NULL && $insertcorrdod  == NULL && $insertcorrplot == NULL) {
+
+              echo json_encode(array("message" => "No correction."));
+           
+        }
+
+        else {
+
+            if ( $insertcorrname == NULL ) {
+
+                $insertcorrname = $acceptname;
+                echo "corrname";
+            }
+
+            if ( $insertcorrdob == NULL ) {
+                $insertcorrdob = $acceptdob;
+                echo "corrdob";
+            }
+
+            if ( $insertcorrdod == NULL ) {
+                $insertcorrdod = $acceptdod;
+                echo "corrdod";
+            }
+
+            if ($insertcorrplot == NULL ) {
+                $insertcorrplot = $acceptplot;
+                echo "corrplot";
+            }
+
+             //TUKAR testkubur to kuburbaru
               $updateTestkubur = "UPDATE testkubur SET   
                 nama = '".$insertcorrname."',
                 dob = '".$insertcorrdob."',
@@ -65,10 +96,13 @@ if ($con->connect_error) {
                   // else{
                   //   echo json_encode(array("message" => "test kubur error")); 
                   // }
+        }
 
-          } else {
-          echo json_encode(array("message" => "Unknown error occured."));
-             }
+    }
+
+    else {
+        echo json_encode(array("message" => "Unknown error occured."));
+    }
 
 
     //     $namecheckquerry = "SELECT * FROM laporandata_new WHERE status='".$status0."'";
@@ -130,8 +164,9 @@ if ($con->connect_error) {
     //             // echo "failed";
     //         }
             
-    //         echo json_encode("accepted");
+// else {
+//     echo json_encode("accepted");
             // mysqli_close($con);
-    //     }
+// }
 	
 ?>

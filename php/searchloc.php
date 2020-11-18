@@ -6,9 +6,9 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $servername = "localhost";
-$username   = "u570110870_geopusara20";
-$password   = "Geopusara@20";
-$dbname     = "u570110870_geopusara";
+$username   = "root";
+$password   = "";
+$dbname     = "id10505005_geopusara";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

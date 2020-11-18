@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-	$con = mysqli_connect('localhost','u570110870_geopusara20','Geopusara@20','u570110870_geopusara');
+	$con = mysqli_connect('localhost','root','','id10505005_geopusara');
 
 	//check that connection happened
 	if (mysqli_connect_errno())
@@ -30,12 +30,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 	$corrdob ='22-22-2222';
 	$corrplot  = '55';
 		*/
-    $insertuserid = $data->userid;
+    $insertid = $data->testkubur_id;
     $status = "rejected";
 
         $updatequerry = "UPDATE laporandata_new SET 
         status = '".$status."'
-        WHERE id='".$insertuserid."'";
+        WHERE testkubur_id='".$insertid."'";
 
          if (mysqli_query($con, $updatequerry)) {
         echo json_encode(array("message" => "Account has been rejected"));

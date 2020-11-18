@@ -6,8 +6,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminhomeComponent } from './components/adminhome/adminhome.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
-import { AdminheaderComponent } from './components/adminheader/adminheader.component';
-import { UserheaderComponent } from './components/userheader/userheader.component';
 import { DisplaydataComponent } from './components/displaydata/displaydata.component';
 import { MasterhomeComponent } from './components/masterhome/masterhome.component';
 import { ListKuburComponent } from './components/listkubur/listkubur.component';
@@ -55,16 +53,6 @@ const routes: Routes = [
   {
     path: 'search-form',
     component: SearchFormComponent
-  },
-
-  {
-    path: 'adminheader',
-    component: AdminheaderComponent
-  },
-
-  {
-    path: 'userheader',
-    component: UserheaderComponent
   },
 
   {

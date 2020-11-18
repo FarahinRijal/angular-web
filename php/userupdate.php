@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST, PUT");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-  $con = mysqli_connect('localhost','u570110870_geopusara20','Geopusara@20','u570110870_geopusara');
+  $con = mysqli_connect('localhost','root','','id10505005_geopusara');
 
 	//check that connection happened
 	if (mysqli_connect_errno())
@@ -29,14 +29,28 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
     // echo $insertcorrdod;
 
-    $insertuserquerry = "INSERT INTO laporandata_new(`Id`, `name`, `corrname`, `dob`,`corrdob`, `dod`,`corrdod`, `plot`,`corrplot`, `status`, `testkubur_id`) VALUES ( NULL, '".$currname."','".$insertcorrname."','".$currdob."','".$insertcorrdob."','".$currdod."','".$insertcorrdod."','".$currplot."','".$insertcorrplot."','".$status."', '".$inserttestkubur."')";
+    $namecheckquerry = "SELECT * FROM laporandata_new WHERE testkubur_id='".$inserttestkubur."' AND status='".$status."'";  
+
+    $namecheck = mysqli_query($con,$namecheckquerry) or die ("name check querry failed");
+
+    if (mysqli_num_rows($namecheck) > 0)
+    {
+      echo json_encode(array("message" => "Unable to register. namecheck exist"));
+    }
+    else{
+      $insertuserquerry = "INSERT INTO laporandata_new(`Id`, `name`, `corrname`, `dob`,`corrdob`, `dod`,`corrdod`, `plot`,`corrplot`, `status`, `testkubur_id`) VALUES ( NULL, '".$currname."','".$insertcorrname."','".$currdob."','".$insertcorrdob."','".$currdod."','".$insertcorrdod."','".$currplot."','".$insertcorrplot."','".$status."', '".$inserttestkubur."')";
       if (mysqli_query($con, $insertuserquerry)) {
-        echo json_encode(array("message" => "New record created successfully")); //DONE
+        echo json_encode(array("message" => "success")); //DONE
       } else {
         // echo "error";
         echo json_encode(array("message" => "Unable to register. Unknown error occured."));
       }
       mysqli_close($con);
+    }
+
+     
+
+      
 
        // $userupdate = "UPDATE laporandata_new SET 
        //  name = '".$currname."',

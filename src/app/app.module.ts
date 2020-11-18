@@ -32,8 +32,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminhomeComponent } from './components/adminhome/adminhome.component';
 import { ApiService } from './components/shared/api-service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
-import { AdminheaderComponent } from './components/adminheader/adminheader.component';
-import { UserheaderComponent } from './components/userheader/userheader.component';
 import { DisplaydataComponent } from './components/displaydata/displaydata.component';
 import { MasterhomeComponent } from './components/masterhome/masterhome.component';
 import { ListKuburComponent } from './components/listkubur/listkubur.component';
@@ -66,8 +64,6 @@ import { EnquiryComponent } from './components/enquiry/enquiry.component';
     RegisterComponent,
     AdminhomeComponent,
     SearchFormComponent,
-    AdminheaderComponent,
-    UserheaderComponent,
     DisplaydataComponent,
     MasterhomeComponent,
     ListKuburComponent,

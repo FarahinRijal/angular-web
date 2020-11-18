@@ -16,20 +16,22 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 	$data = json_decode(file_get_contents("php://input"));
     
-	// $insertusername = $_POST["username"];
-	// $insertpassword = $_POST["password"];
-	$insertusername = $data->username;
-    $insertpassword = $data->password;
-    // $status = "pending";
+	// $insertemail = $_POST["email"];
+	// $insertpassword = $_POST["password"];	
+	$insertusername = "test105";
+    $insertpassword = "test";
+    $salt = "8dC_9Kl?";
+	$encrypted_password = md5($insertpassword.$salt);
+	 // $encrypted_password = md5($insertpassword);
 
 
 	//check if the id exist
-	$namecheckquerry = "SELECT * FROM accounts WHERE username='".$insertusername."' AND password='".$insertpassword."'";      
+	$namecheckquerry = "SELECT * FROM accounts WHERE username='".$insertusername."' AND password='".$encrypted_password."'";      
 	$namecheck = mysqli_query($con,$namecheckquerry) or die ("2: name check querry failed");//2: name check querry failed
 
 	if (mysqli_num_rows($namecheck)!=1)
 	{
-		$namecheckquerry2 = "SELECT * FROM accounts WHERE username='".$insertusername."' AND password='".$insertpassword."' ";      
+		$namecheckquerry2 = "SELECT * FROM requests WHERE username='".$insertusername."' AND password='".$encrypted_password."'";      
 		$namecheck2 = mysqli_query($con,$namecheckquerry2) or die ("2: name check querry failed");
 
 		if (mysqli_num_rows($namecheck2)>0){
@@ -49,12 +51,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 	// $salt = $existinginfo["salt"];
 	// $hash2 = $existinginfo["hash"];
 	// $admins = $existinginfo["admins"];
-	$password = $existinginfo["password"];
+	$dbpassword = $existinginfo["password"];
 	$type = $existinginfo["type"];
 
 	//check password
 	// $loginhash = crypt($password,$salt);
-	if ($insertpassword != $password)
+	if ($encrypted_password != $dbpassword)
 	{
 		// echo "6: incorrect password";
 		http_response_code(401);

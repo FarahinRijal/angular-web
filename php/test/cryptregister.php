@@ -18,18 +18,18 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 	$data = json_decode(file_get_contents("php://input"));
  
 
-	$insertusername = $data->username;
-    $insertfullname = $data->fullname;
-    $insertphone = $data->phone;
-    $insertemail = $data->email;
-    $insertjob = $data->job;
-	$insertpassword = $data->password;
+	$insertusername = "test105";
+    $insertfullname = "test";
+    $insertphone = "test";
+    $insertemail = "test";
+    $insertjob = "test";
+	$insertpassword = "test";
 	$message = "$insertusername would like to request as admin.";
 	// $registercode = $_POST["reqstatus"];
 	// $registercode = '1';
 	$salt = "8dC_9Kl?";
 	$encrypted_password = md5($insertpassword.$salt);
-	
+	echo $encrypted_password;
     /*
     $nama = 'testuser1';
     $phone = '0146164015';
@@ -42,7 +42,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 	//check for existing 
 	$namecheckquerry = "SELECT * FROM accounts WHERE username='".$insertusername."' AND password='".$encrypted_password."'";
-	$namecheck = mysqli_query($con,$namecheckquerry) or die ("1: name check querry failed");//2: name check querry failed
+	$namecheck = mysqli_query($con,$namecheckquerry) or die ("2: name check querry failed");//2: name check querry failed
 
 	if (mysqli_num_rows($namecheck)!=0)
 	{	
@@ -65,7 +65,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 			
 		}
 		else{
-			$insertuserquerry = "INSERT INTO requests(`id`, `fullname`, `username`, `email`, `password`, `phone`, `job`, `message`, `date`) VALUES ( NULL, '".$insertfullname."','".$insertusername."','".$insertemail."',md5('".$encrypted_password."'),'".$insertphone."','".$insertjob."','".$message."',CURRENT_TIMESTAMP)";
+			$insertuserquerry = "INSERT INTO requests(`id`, `fullname`, `username`, `email`, `password`, `phone`, `job`, `message`, `date`) VALUES ( NULL, '".$insertfullname."','".$insertusername."','".$insertemail."','".$encrypted_password."','".$insertphone."','".$insertjob."','".$message."',CURRENT_TIMESTAMP)";
 			if (mysqli_query($con, $insertuserquerry)) {
 				echo json_encode(array("message" => "New record created successfully")); //DONE
 			} else {
