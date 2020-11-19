@@ -18,6 +18,7 @@ import { UserupdateComponent } from './components/userupdate/userupdate.componen
 import { UseranalysisComponent } from './components/useranalysis/useranalysis.component';
 import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdaftarkubur.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
+import { MapComponent } from './components/map/map.component';
 
 
 
@@ -104,6 +105,10 @@ const routes: Routes = [
   {
     path: 'enquiry',
     component: EnquiryComponent
+  },
+  {
+    path: 'map',
+    component: MapComponent
   }
 
 

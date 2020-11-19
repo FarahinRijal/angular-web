@@ -50,6 +50,8 @@ import { Service } from './app.service';
 import { CommonModule } from '@angular/common';
 import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdaftarkubur.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
+import { MapComponent } from './components/map/map.component';
+import { MapService } from './components/shared/map.service';
 
 
 
@@ -77,6 +79,7 @@ import { EnquiryComponent } from './components/enquiry/enquiry.component';
     UseranalysisComponent,
     UserdaftarkuburComponent,
     EnquiryComponent,
+    MapComponent,
     
   
 
@@ -111,7 +114,7 @@ import { EnquiryComponent } from './components/enquiry/enquiry.component';
     // FlxUiDatatableModule,
     NgxChartsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDVrfY6R9jqVhoXqTc2_UEBIGI-Tpe1yuo'
+      apiKey: 'AIzaSyCbo68cxXibR42QB4XDeytAnSWhA6kbXHw'
       /* apiKey is required, unless you are a
       premium customer, in which case you can
       use clientId
@@ -145,7 +148,8 @@ import { EnquiryComponent } from './components/enquiry/enquiry.component';
 
   providers: [
     ApiService,
-    Service
+    Service,
+    MapService
     // FlxUiDataTable
   ],
   bootstrap: [AppComponent],

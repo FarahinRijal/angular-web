@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { ApiService } from '../shared/api-service';
 import { Data, Router } from '@angular/router';
 import { Employee } from 'src/app/app.service';
+import { Subscription } from 'rxjs';
+import { MapService } from '../shared/map.service';
 
 // interface Student {
 //   nama: string;
@@ -22,7 +24,6 @@ export class SearchFormComponent implements OnInit {
   @Input() public isClicked: boolean;
   p: number = 1;
   currentName: Data = new Employee();
-  data = [];
   popupVisible = false;
 
   @Input() public isEditing: boolean;
@@ -45,7 +46,7 @@ export class SearchFormComponent implements OnInit {
     corrnama: new FormControl('', Validators.required),
     corrdob:new FormControl('', Validators.required),
     corrdod: new FormControl('', Validators.required),
-    corrplot: new FormControl('', Validators.required),
+    corrplot: new FormControl('', Validators.required)
 });
   
 get f(){
@@ -104,7 +105,8 @@ submit(){
     private http: HttpClient,
     private ApiService: ApiService,
     private router: Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private mapservice: MapService // inject service
     ) 
     {
 
@@ -118,7 +120,7 @@ submit(){
   show(kubur){
     console.log("data->", this.currentName);    
     this.currentName = kubur;
-    this.popupVisible = true;
+    this.popupVisible = true; 
   }
   
   // update(corrname,corrdob,corrdod,corrplot){
@@ -181,13 +183,23 @@ submit(){
     const allInfo = `Laporan dibatalkan!`;
     alert(allInfo);
   } 
+
+  message:string;
   
-  lokasi() {
-    
+  lokasi(kubur) {
+    this.router.navigate(['/map']);    
+    this.currentName = kubur;
+    let currentData = this.currentName;
+    console.log(currentData);    
+    console.log("latitude 1: ", this.currentName.latitude);       
+    console.log("longitude 1: ", this.currentName.longitude);
+
   }
  
   ngOnInit() {
     this.isClicked = true;
+    // this.mapservice.currentMessage.subscribe(message => this.message = message)
+    // this.mapservice.currentMessage.subscribe(message => this.message = message)
   }
 
   format = "dd/MM/yyyy";

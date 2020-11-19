@@ -1,0 +1,16 @@
+<app-header [isUserLoggedIn]="false" ></app-header>
+
+<!-- <div class="container">
+    <div #mapContainer id="map"></div>
+</div> -->
+
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+<div *ngFor="let currentName of response"></div>
+
+<p>pass data latitude: {{currentName.latitude}}</p>
+
+    <!-- <button (click)="newMessage()">New Message</button> -->
+    

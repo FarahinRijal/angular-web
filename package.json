@@ -50,6 +50,7 @@
     "devextreme": "20.1.6",
     "devextreme-angular": "20.1.6",
     "flx-ui-datatable": "^1.1.5",
+    "immutable": "^4.0.0-rc.12",
     "install": "^0.13.0",
     "jquery": "^3.5.1",
     "jw-angular-pagination": "^1.1.0",
@@ -67,13 +68,13 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.0",
+    "@angular-devkit/build-angular": "^0.901.12",
     "@angular/cli": "^11.0.1",
     "@angular/compiler-cli": "~11.0.0",
     "@angular/language-service": "~11.0.0",
     "@types/angular": "^1.7.0",
     "@types/datatables.net": "^1.10.19",
-    "@types/googlemaps": "^3.39.9",
+    "@types/googlemaps": "^3.39.12",
     "@types/jquery": "^3.5.0",
     "@types/node": "^12.11.1",
     "ts-node": "~8.3.0",
