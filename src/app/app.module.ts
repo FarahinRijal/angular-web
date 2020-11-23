@@ -51,7 +51,6 @@ import { CommonModule } from '@angular/common';
 import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdaftarkubur.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { MapComponent } from './components/map/map.component';
-import { MapService } from './components/shared/map.service';
 
 
 
@@ -148,8 +147,7 @@ import { MapService } from './components/shared/map.service';
 
   providers: [
     ApiService,
-    Service,
-    MapService
+    Service
     // FlxUiDataTable
   ],
   bootstrap: [AppComponent],

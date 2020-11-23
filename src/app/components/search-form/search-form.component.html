@@ -51,7 +51,6 @@
 
   <div>
     <dx-popup [width]="500" [height]="600" [showTitle]="true" title="Maklumat" [dragEnabled]="true" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
-      <!-- <dx-scroll-view> -->
       <div *dxTemplate="let data of 'content'">
           <p *ngIf="isClicked">
               Nama Penuh:
@@ -118,6 +117,7 @@
             <button style="font-size: 12px" type="submit" class="button is-primary is-normal">Simpan</button>
             <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="backTogle()">Batal</button>
           </div>
+
         </form>
 
         <!-- <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">
@@ -148,39 +148,9 @@
             
             <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
             <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="edit(currentName.id)">Kemaskini</button>&nbsp; -->
-            <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="lokasi(currentName)">Lokasi</button>
-          </p>
-        &nbsp;
-          <p *ngIf="!isClicked">
-            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="update(nama,dob,dod,plot,currentName.corrnama,currentName.corrdob,currentName.corrdod,currentName.corrplot)">Simpan Data</button>&nbsp; -->
-            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="backTogle()">Batal</button> -->
+            <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="lokasi()">Lokasi</button>
+            
           </p>
       </div> 
-    <!-- </dx-scroll-view>    -->
     </dx-popup>
   </div>
-
-  <!-- freakyjolly.com -->
-  <!-- <div>
-    <mat-form-field>
-      <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
-        <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let movie of filteredMovies" [value]="movie.name">
-            <span><b>{{movie.name}}</b> ({{movie.plot}})</span>
-          </mat-option>
-        </ng-container>
-      </mat-autocomplete>
-    </mat-form-field>
-  
-    <br/>
-  
-    <ng-container *ngIf="errorMsg; else elseTemplate">
-      {{errorMsg}}
-    </ng-container>
-    <ng-template #elseTemplate>
-      <h5>Selected Value: {{searchMoviesCtrl.value}}</h5>
-    </ng-template> 
-  </div> -->
-<!-- freakyjolly.com -->

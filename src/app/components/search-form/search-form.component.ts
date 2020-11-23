@@ -4,15 +4,6 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { ApiService } from '../shared/api-service';
 import { Data, Router } from '@angular/router';
 import { Employee } from 'src/app/app.service';
-import { Subscription } from 'rxjs';
-import { MapService } from '../shared/map.service';
-
-// interface Student {
-//   nama: string;
-//   dob: string;
-//   dod: string;
-//   plot: string;
-// }
 
 @Component({
   selector: 'app-search-form',
@@ -22,12 +13,11 @@ import { MapService } from '../shared/map.service';
 export class SearchFormComponent implements OnInit {
 
   @Input() public isClicked: boolean;
+  @Input() public isShow: boolean;
   p: number = 1;
   currentName: Data = new Employee();
   popupVisible = false;
-
-  @Input() public isEditing: boolean;
-  @Input() public isSaving: boolean;
+  popUp = false;
 
   response = [];
   locList: any = ['Kangkar Pulai',
@@ -74,7 +64,7 @@ submit(){
         location: "Kangkar Pulai",
         nama: this.form.value.name,
       } 
-      console.log("KP selected");
+      // console.log("KP selected");
       
     } 
     else    
@@ -83,7 +73,7 @@ submit(){
         location: "Impian Emas",
         nama: this.form.value.name,
       } 
-      console.log("IE selected");
+      // console.log("IE selected");
     }
     
 
@@ -91,7 +81,7 @@ submit(){
       .subscribe((response: any[]) => {
         this.response = response;
       // this.response.push(response);
-      console.log("response ==> ", response);
+      // console.log("response ==> ", response);
     },
       error => {
         console.log("error");
@@ -105,8 +95,7 @@ submit(){
     private http: HttpClient,
     private ApiService: ApiService,
     private router: Router,
-    private fb:FormBuilder,
-    private mapservice: MapService // inject service
+    private fb:FormBuilder
     ) 
     {
 
@@ -118,7 +107,7 @@ submit(){
   }
 
   show(kubur){
-    console.log("data->", this.currentName);    
+    // console.log("data->", this.currentName);    
     this.currentName = kubur;
     this.popupVisible = true; 
   }
@@ -131,11 +120,6 @@ submit(){
     let olddod = this.currentName.dod;
     let oldplot = this.currentName.plot;
     let testkubur_id = this.currentName.id;
-    // console.log("nama lama:", oldname);
-    // console.log("dob lama:", olddob);
-    // console.log("dod lama:", olddod);
-    // console.log("plot lama:", oldplot);
-    // console.log("id lama:", testkubur_id);
     this.updateForm.value.nama = oldname;
     this.updateForm.value.dob = olddob;
     this.updateForm.value.dod = olddod;
@@ -184,26 +168,31 @@ submit(){
     alert(allInfo);
   } 
 
-  message:string;
-  
-  lokasi(kubur) {
-    this.router.navigate(['/map']);    
-    this.currentName = kubur;
-    let currentData = this.currentName;
-    console.log(currentData);    
-    console.log("latitude 1: ", this.currentName.latitude);       
-    console.log("longitude 1: ", this.currentName.longitude);
-
+  lokasi()
+  {
+    let lat = this.currentName.latitude;
+    let lng = this.currentName.longitude;
+    let pl = this.currentName.plot;
+    let nama = this.currentName.nama;
+    this.updateForm.value.latitude = lat;  
+    this.updateForm.value.longitude = lng;    
+    this.updateForm.value.nama = nama;  
+    this.updateForm.value.plot = pl;
+    let lati = this.updateForm.value.latitude;  
+    let longi = this.updateForm.value.longitude;
+    let nam = this.updateForm.value.nama;  
+    let plot = this.updateForm.value.plot;
+    // let adduserdata = this.currentName.latitude;
+    this.router.navigate(['/map'], {queryParams: {data1 : lati, data2 : longi, data3 : nam, data4 : plot}});
+    // console.log("pass lati->", lati);
+    // console.log("pass long->", longi); 
+    // console.log("pass nama->", nam);
+    // console.log("pass plot->", plot); 
   }
  
   ngOnInit() {
     this.isClicked = true;
-    // this.mapservice.currentMessage.subscribe(message => this.message = message)
-    // this.mapservice.currentMessage.subscribe(message => this.message = message)
   }
-
-  format = "dd/MM/yyyy";
-
 
 }
 

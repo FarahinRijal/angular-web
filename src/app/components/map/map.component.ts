@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, ViewChild, AfterViewInit, OnInit, Input } from '@angular/core';
-import { Data, Router } from '@angular/router';
-import { Employee } from 'src/app/app.service';
-import { MapService } from '../shared/map.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-smap',
@@ -11,70 +8,66 @@ import { MapService } from '../shared/map.service';
 })
 export class MapComponent implements OnInit {
 
-  // @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
-  // map: google.maps.Map;
-  // lat = 40.73061;
-  // lng = -73.935242;
+  latitude: number;
+  longitude: number;
+  nama: string;
+  plot:string;
 
-  // coordinates = new google.maps.LatLng(this.lat, this.lng);
+  lat : number;
+  lng : number;
+  nam : number;
+  plo : number;
+  previous;
 
-  // mapOptions: google.maps.MapOptions = {
-  //  center: this.coordinates,
-  //  zoom: 8
-  // };
+  // lat = 1.53280; 1.554812
+  // lng = 103.621613; 103.584084
 
-  // marker = new google.maps.Marker({
-  //   position: this.coordinates,
-  //   map: this.map,
-  // });
-
-  // ngAfterViewInit() {
-  //   this.mapInitializer();
-  // }
-
-  // mapInitializer() {
-  //   this.map = new google.maps.Map(this.gmap.nativeElement, 
-  //   this.mapOptions);
-  //   this.marker.setMap(this.map);
-  // }
-  
-  currentName: Data = new Employee();
-  response = [];
-  @Input() latitude: string;
-  @Input() longitude: string;
-  // message:string;
-  
 
   constructor (
-    private http: HttpClient,
-    private mapservice: MapService
+    private route: ActivatedRoute
   ) {
 
-    // this.http.get('http://localhost/php_ara/getlocation.php').subscribe(response => {
-    // this.response.push(response);
-    // console.log("response",this.response);
-   
-    
-    // }, 
-    // error => console.error(error));
-    
-  }
- 
-
-  ngOnInit () {  
-    this.mapservice.currentMessage.subscribe(message => this.currentName.latitude = message)
-    console.log("latitude: ", this.currentName.latitude);       
-    console.log("longitude: ", this.currentName.longitude);
-    // console.log("message: ", this.message)
-
   }
 
-  // newMessage() {
-  //   this.mapservice.changeMessage("Hello from Sibling")
+  ngOnInit () { 
+    this.latitude = this.route.snapshot.queryParams.data1;
+    this.longitude = this.route.snapshot.queryParams.data2; 
+    this.nama = this.route.snapshot.queryParams.data3;
+    this.plot = this.route.snapshot.queryParams.data4;
+    // console.log("receive lati-> ",this.route.snapshot.queryParams.data1);    
+    // console.log("receive long-> ",this.route.snapshot.queryParams.data2);
+    // console.log("receive nama-> ",this.route.snapshot.queryParams.data3);    
+    // console.log("receive plot-> ",this.route.snapshot.queryParams.data4);
+    this.lat = parseFloat(this.route.snapshot.queryParams.data1);
+    this.lng = parseFloat(this.route.snapshot.queryParams.data2);
+    this.nam = parseFloat(this.route.snapshot.queryParams.data3);
+    this.plo = parseFloat(this.route.snapshot.queryParams.data4);
+    // console.log("loc: ", this.lat, this.lng)
+
+  }
+
+  clickedMarker(infowindow) {
+    if (this.previous) {
+        this.previous.close();
+    }
+    this.previous = infowindow;
+ }
+
+  
+
+  // get() {
+  //   let lat = this.latitude;
+  //   let lng = this.longitude;
+  //   console.log("latlong->", lat, lng)
   // }
 
+  // getMessage(id : number) {
+  //   this.receivedChildMessage = id;
+  //   console.log("get map:", this.receivedChildMessage);
+  //   // console.log("Height = " + value.id); 
+  //   // this.id = id
+  // }
 
-  lat = 1.530280;
-  lng = 103.621613;
+ 
 
 }
