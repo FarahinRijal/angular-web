@@ -19,6 +19,7 @@ import { UseranalysisComponent } from './components/useranalysis/useranalysis.co
 import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdaftarkubur.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { MapComponent } from './components/map/map.component';
+import { AdminMapComponent } from './components/admin-map/admin-map.component';
 
 
 
@@ -109,7 +110,12 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapComponent
-  }
+  },
+
+  {
+    path: 'admin-map',
+    component: AdminMapComponent
+  },
 
 
 ];

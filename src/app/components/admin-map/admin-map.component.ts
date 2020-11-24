@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  selector: 'app-admin-map',
+  templateUrl: './admin-map.component.html',
+  styleUrls: ['./admin-map.component.scss'],
 })
-export class MapComponent implements OnInit {
+export class AdminMapComponent implements OnInit {
 
   latitude: number;
   longitude: number;

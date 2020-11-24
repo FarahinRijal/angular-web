@@ -93,7 +93,7 @@ export class ListKuburComponent implements OnInit, OnDestroy {
        error => {
          console.log("error");
          console.log(error);         
-        const allInfo = `No records found.`;
+        const allInfo = `Tiada dalam rekod.`;
         alert(allInfo);
        });
  
@@ -142,11 +142,6 @@ show(kubur){
       let olddod = this.currentName.dod;
       let oldplot = this.currentName.plot;
       let testkubur_id = this.currentName.id;
-      // console.log("nama lama:", oldname);
-      // console.log("dob lama:", olddob);
-      // console.log("dod lama:", olddod);
-      // console.log("plot lama:", oldplot);
-      // console.log("id lama:", testkubur_id);
       this.updateForm.value.nama = oldname;
       this.updateForm.value.dob = olddob;
       this.updateForm.value.dod = olddod;
@@ -155,46 +150,65 @@ show(kubur){
       let edit = this.updateForm.value;
       console.log("updated data",edit);
         this.ApiService.correction(edit.nama,edit.dob,edit.dod,edit.plot,edit.corrnama,edit.corrdob,edit.corrdod,edit.corrplot,edit.id).subscribe(result => {
-          console.log("result");
-          console.log(result['message']);
-    
-          // const allInfo ='';
-          if(result['message']=='success'){
-             const allInfo = `Laporan ${oldname} berjaya dihantar!`;
-             alert(allInfo);
-             window.location.reload();
-          }
-          else{
-            const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
-            alert(allInfo);
-            window.location.reload();
-          }
-          this.router.navigate(['/listkubur']);
+        console.log("result");
+        console.log(result['message']);
+  
+        // const allInfo ='';
+        if(result['message']=='success'){
+           const allInfo = `Laporan ${oldname} berjaya dihantar!`;
+           alert(allInfo);
+           window.location.reload();
+        }
+        else{
+          const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
+          alert(allInfo);
+          window.location.reload();
+        }
+        this.router.navigate(['/listkubur']);
+        // alert(allInfo);
+        // window.location.reload();
+        // this.router.navigate(['/search-form']);
+        },
+        error => {
+          console.log("error: ",error);
+          // const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
           // alert(allInfo);
           // window.location.reload();
-          // this.router.navigate(['/search-form']);
-          },
-          error => {
-            console.log("error: ",error.status);
-            const allInfo = `Laporan ${oldname} terdahulu masih dalam proses`;
-            alert(allInfo);
-            // window.location.reload();
-            this.router.navigate(['/search-form']);
-          })
+          this.router.navigate(['/listkubur']);
+        })
     }
-
-
-public toggle(): void { 
-  this.isClicked = !this.isClicked; 
-  console.log(this.isClicked);
-} 
-
-public backTogle(): void { 
-  this.isClicked = true;
-} 
-
-lokasi () {
-
-}
-
+    
+    
+    public toggle(): void { 
+      this.isClicked = !this.isClicked; 
+      console.log("kemaskini: ",this.isClicked);
+    } 
+    
+    public backTogle(): void { 
+      this.isClicked = true;
+      const allInfo = `Laporan dibatalkan!`;
+      alert(allInfo);
+    } 
+  
+    lokasi()
+    {
+      let lat = this.currentName.latitude;
+      let lng = this.currentName.longitude;
+      let pl = this.currentName.plot;
+      let nama = this.currentName.nama;
+      this.updateForm.value.latitude = lat;  
+      this.updateForm.value.longitude = lng;    
+      this.updateForm.value.nama = nama;  
+      this.updateForm.value.plot = pl;
+      let lati = this.updateForm.value.latitude;  
+      let longi = this.updateForm.value.longitude;
+      let nam = this.updateForm.value.nama;  
+      let plot = this.updateForm.value.plot;
+      // let adduserdata = this.currentName.latitude;
+      this.router.navigate(['/admin-map'], {queryParams: {data1 : lati, data2 : longi, data3 : nam, data4 : plot}});
+      // console.log("pass lati->", lati);
+      // console.log("pass long->", longi); 
+      // console.log("pass nama->", nam);
+      // console.log("pass plot->", plot); 
+    }
 }

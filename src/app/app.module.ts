@@ -51,6 +51,7 @@ import { CommonModule } from '@angular/common';
 import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdaftarkubur.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { MapComponent } from './components/map/map.component';
+import { AdminMapComponent } from './components/admin-map/admin-map.component';
 
 
 
@@ -79,6 +80,7 @@ import { MapComponent } from './components/map/map.component';
     UserdaftarkuburComponent,
     EnquiryComponent,
     MapComponent,
+    AdminMapComponent,
     
   
 

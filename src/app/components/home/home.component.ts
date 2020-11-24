@@ -87,8 +87,10 @@ import { Component, OnInit } from '@angular/core';
     .a:hover {cursor: pointer;}
 
     h1{
-      font-size: 60px;
+      font-size:5vw;
+      width: auto;
       font-family: fantasy;
+      
     }
 
     .img {
