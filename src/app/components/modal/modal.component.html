@@ -1,0 +1,87 @@
+<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Maklumat</p>
+        <button class="delete" aria-label="close" (click)="cancel()"></button>
+      </header>
+      <section class="modal-card-body">
+          
+        <div class="container">
+            <p  *ngIf="!isClicked">
+                Nama Penuh:
+                <span>{{name}}</span>
+            </p>
+            <p *ngIf="!isClicked">
+                Tarikh Lahir:
+                <span>{{dob | date: 'dd/MM/yyyy'}}</span>
+            </p>
+            <p *ngIf="!isClicked">
+                Tarikh Kematian:
+                <span>{{dod | date: 'dd/MM/yyyy'}}</span>
+            </p>
+            <p *ngIf="!isClicked">
+                Plot Kubur:
+                <span>{{plot}}</span>
+            </p>
+        </div>
+        <div class="buttons" *ngIf="!isClicked">
+            <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>
+            <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="lokasi()">Lokasi</button>
+        </div>
+
+        <form *ngIf="isClicked" (ngSubmit)="update()" [formGroup]="updateForm">  
+          <div>
+            <p class="label" >Nama Penuh: </p>
+            <input type="hidden" class="input" formControlName="nama">
+            <p class="current" >{{name}}</p>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrnama" >
+          </div>
+          <div>
+            <label class="label" >Tarikh Lahir: </label>
+            <input class="input" type="hidden" formControlName="dob">
+            <label class="current" >{{dob | date: 'dd/MM/yyyy'}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <dx-date-box type="date"  formControlName="corrdob" pickerType="rollers"></dx-date-box>
+            <!-- <input type="text" class="input" formControlName="corrdob" placeholder="dd/mm/yyyy"> -->
+          </div>
+          <div>
+            <label class="label" >Tarikh Kematian: </label>
+            <input class="input" type="hidden" formControlName="dod">
+            <label class="current" >{{dod | date: 'dd/MM/yyyy'}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <dx-date-box type="date"  formControlName="corrdod" pickerType="rollers"></dx-date-box>
+            <!-- <input type="text" class="input" formControlName="corrdod"  placeholder="dd/mm/yyyy"> -->
+          </div>
+          <div>
+            <label class="label" >Plot Kubur: </label>
+            <input class="input" type="hidden" formControlName="plot">
+            <label class="current" >{{plot}}</label>
+          </div>
+          <div>
+            <label class="label" >Pembetulan: </label>
+            <input type="text" class="input" formControlName="corrplot" >
+          </div>
+        <br/>
+          <div class="buttons">
+            <button style="font-size: 12px" type="submit" class="button is-primary is-normal">Simpan</button>
+            <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="backTogle()">Batal</button>
+          </div>
+    
+        </form>
+    
+      </section>
+
+      
+     
+      <!-- <footer class="modal-card-foot">
+      </footer> -->
+    </div>
+  </div>

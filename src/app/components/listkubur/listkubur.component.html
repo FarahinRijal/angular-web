@@ -59,15 +59,18 @@
                       <input class="search" type="text" formControlName="name" placeholder="search by name.."> 
                     </div>
                     <div class="field">
-                      <button class="button is-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                      <button class="button is-primary" type="submit" [disabled]="!form.valid">Cari</button>
                     </div> 
+
+                    <app-modal *ngIf="showModal" (onClose)="showModal=false"></app-modal>
           
                     <div class="container">
                       <div class="column is-centered">
                       <table class="table">
-                        <tr  *ngFor="let currentEmployee of response  | paginate:{itemsPerPage: 9, currentPage:p}">
-                          <td>{{currentEmployee.nama}}</td>
-                          <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentEmployee)">Info</button></td>
+                        <tr  *ngFor="let currentName of response  | paginate:{itemsPerPage: 9, currentPage:p}">
+                          <td>{{currentName.nama}}</td>
+                          <td><button class="button is-primary" (click)="selectItem(currentName)">Info</button></td>
+                          <!-- <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentEmployee)">Info</button></td> -->
                         </tr>
                       </table> 
                       </div>  
@@ -85,7 +88,7 @@
       </div>
     </div> 
     
-    <div>
+    <!-- <div>
       <dx-popup [width]="500" [height]="600" [showTitle]="true" title="Maklumat" [dragEnabled]="true" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
         <div *dxTemplate="let data of 'content'">
             <p *ngIf="isClicked">
@@ -157,7 +160,7 @@
             </p>
         </div> 
       </dx-popup>
-    </div>
+    </div> -->
       
 
 

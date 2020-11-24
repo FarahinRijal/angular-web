@@ -20,6 +20,8 @@ import { UserdaftarkuburComponent } from './components/userdaftarkubur/userdafta
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { MapComponent } from './components/map/map.component';
 import { AdminMapComponent } from './components/admin-map/admin-map.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { AdminmodalComponent } from './components/adminmodal/adminmodal.component';
 
 
 
@@ -116,6 +118,15 @@ const routes: Routes = [
     path: 'admin-map',
     component: AdminMapComponent
   },
+
+  {
+    path: 'modal',
+    component: ModalComponent
+  },
+  {
+    path: 'adminmodal',
+    component: AdminmodalComponent
+  }
 
 
 ];

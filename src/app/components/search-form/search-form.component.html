@@ -30,12 +30,15 @@
             <button class="button is-primary" type="submit" [disabled]="!form.valid">Cari</button>
           </div> 
 
+          <app-modal *ngIf="showModal" (onClose)="showModal=false"></app-modal>
+
           <div class="container">
             <div class="column is-centered">
             <table class="table">
               <tr  *ngFor="let currentName of response  | paginate:{itemsPerPage: 9, currentPage:p}">
                 <td>{{currentName.nama}}</td>
-                <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentName)">Info</button></td>
+                <td><button class="button is-primary" (click)="selectItem(currentName)">Info</button></td>
+                <!-- <td><button style="font-size: 12px;" type="submit" class="button is-info is-normal" (click)="show(currentName)">Info</button></td> -->
               </tr>
             </table> 
             </div>  
@@ -49,7 +52,12 @@
     </div>
   </section>
 
-  <div>
+
+
+
+
+
+  <!-- <div>
     <dx-popup [width]="500" [height]="600" [showTitle]="true" title="Maklumat" [dragEnabled]="true" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
       <div *dxTemplate="let data of 'content'">
           <p *ngIf="isClicked">
@@ -69,14 +77,8 @@
               <span>{{currentName.plot}}</span>
           </p>
           <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">  
-            <!-- (ngSubmit)="update()"  -->
-            <!-- <div>
-              <label class="label" >Nama Penuh: </label>
-              <input class="input" type="text" name="nama" value="{{currentName.id}}">
-            </div> -->
           <div>
             <label class="label" >Nama Penuh: </label>
-            <!-- <input type="hidden" class="input" formControlName="nama"> -->
             <label class="current" >{{currentName.nama}}</label>
           </div>
           <div>
@@ -91,7 +93,6 @@
           <div>
             <label class="label" >Pembetulan: </label>
             <dx-date-box type="date"  formControlName="corrdob" pickerType="rollers"></dx-date-box>
-            <!-- <input type="text" class="input" formControlName="corrdob" placeholder="dd/mm/yyyy"> -->
           </div>
           <div>
             <label class="label" >Tarikh Kematian: </label>
@@ -101,7 +102,6 @@
           <div>
             <label class="label" >Pembetulan: </label>
             <dx-date-box type="date"  formControlName="corrdod" pickerType="rollers"></dx-date-box>
-            <!-- <input type="text" class="input" formControlName="corrdod"  placeholder="dd/mm/yyyy"> -->
           </div>
           <div>
             <label class="label" >Plot Kubur: </label>
@@ -119,38 +119,13 @@
           </div>
 
         </form>
-
-        <!-- <form *ngIf="!isClicked" (ngSubmit)="update()" [formGroup]="updateForm">
-          <div>
-            <label>
-              <span>Full name</span>
-              <input type="text" class="input" formControlName="name" >
-            </label>
-            <div formGroupName="event">
-              <label>
-                <span>Event title</span>
-                <input type="text" class="input" formControlName="title">
-              </label>
-              <label>
-                <span>Event location</span>
-                <input type="text" class="input" formControlName="location">
-              </label>
-            </div>
-          </div>
-          <div>
-            <button type="submit" [disabled]="form.invalid">
-              Submit
-            </button>
-          </div>
-        </form> -->
       
           <p *ngIf="isClicked">
             
             <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="toggle()">Kemaskini</button>&nbsp;
-            <!-- <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="edit(currentName.id)">Kemaskini</button>&nbsp; -->
             <button style="font-size: 12px" type="submit" class="button is-info is-normal" (click)="lokasi()">Lokasi</button>
             
           </p>
       </div> 
     </dx-popup>
-  </div>
+  </div> -->

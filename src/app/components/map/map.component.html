@@ -33,9 +33,12 @@
     (markerClick)="clickedMarker(infowindow)">
 
     <agm-info-window #infowindow>
-        <strong>Maklumat</strong>
-        <h4>Nama : {{nama}} <br/>
-        Plot Kubur : {{plot}}</h4>
+        <h3><strong>Maklumat</strong></h3>
+        <h4>
+          <strong>Nama :</strong> {{nama}} <br/>
+          <strong>Tarikh Kematian :</strong> {{dod | date: 'dd/MM/yyyy'}} <br/>
+          <strong>Plot Kubur :</strong> {{plot}}
+        </h4>
       </agm-info-window>
 
     </agm-marker>

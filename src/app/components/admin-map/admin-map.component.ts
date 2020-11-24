@@ -12,11 +12,15 @@ export class AdminMapComponent implements OnInit {
   longitude: number;
   nama: string;
   plot:string;
+  dob: string;
+  dod:string;
 
   lat : number;
   lng : number;
   nam : number;
   plo : number;
+  db : number;
+  dd : number;
   previous;
 
   // lat = 1.53280; 1.554812
@@ -30,18 +34,22 @@ export class AdminMapComponent implements OnInit {
   }
 
   ngOnInit () { 
-    this.latitude = this.route.snapshot.queryParams.data1;
-    this.longitude = this.route.snapshot.queryParams.data2; 
-    this.nama = this.route.snapshot.queryParams.data3;
-    this.plot = this.route.snapshot.queryParams.data4;
-    // console.log("receive lati-> ",this.route.snapshot.queryParams.data1);    
-    // console.log("receive long-> ",this.route.snapshot.queryParams.data2);
-    // console.log("receive nama-> ",this.route.snapshot.queryParams.data3);    
+    this.nama = this.route.snapshot.queryParams.data1;
+    this.dob = this.route.snapshot.queryParams.data2;
+    this.dod = this.route.snapshot.queryParams.data3;
+    this.plot = this.route.snapshot.queryParams.data4; 
+    this.latitude = this.route.snapshot.queryParams.data5;
+    this.longitude = this.route.snapshot.queryParams.data6; 
+    // console.log("receive dod-> ",this.route.snapshot.queryParams.data3);    
+    // console.log("receive long-> ",this.route.snapshot.queryParams.data6);
+    // console.log("receive nama-> ",this.route.snapshot.queryParams.data1);    
     // console.log("receive plot-> ",this.route.snapshot.queryParams.data4);
-    this.lat = parseFloat(this.route.snapshot.queryParams.data1);
-    this.lng = parseFloat(this.route.snapshot.queryParams.data2);
-    this.nam = parseFloat(this.route.snapshot.queryParams.data3);
+    this.nam = parseFloat(this.route.snapshot.queryParams.data1);
+    this.db = parseFloat(this.route.snapshot.queryParams.data2);
+    this.dd = parseFloat(this.route.snapshot.queryParams.data3);
     this.plo = parseFloat(this.route.snapshot.queryParams.data4);
+    this.lat = parseFloat(this.route.snapshot.queryParams.data5);
+    this.lng = parseFloat(this.route.snapshot.queryParams.data6);
     // console.log("loc: ", this.lat, this.lng)
 
   }
