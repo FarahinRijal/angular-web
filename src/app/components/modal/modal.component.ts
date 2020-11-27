@@ -81,11 +81,11 @@ export class ModalComponent implements OnInit {
     console.log("kemaskini: ",this.isClicked);
   }
 
-  public backTogle(): void { 
-    this.isClicked = false;
+  public batal(): void { 
     const allInfo = `Laporan dibatalkan!`;
     alert(allInfo);
-    this.router.navigate(['/search-form']);
+    this.isClicked = false;
+    // this.router.navigate(['/search-form']);
   } 
 
   lokasi()
@@ -148,7 +148,7 @@ export class ModalComponent implements OnInit {
   cancel() { 
     console.log("close")
     // this.onClose.emit(null); 
-    this.isClicked = false;
+    // this.isClicked = false;
     // const allInfo = `Close!`;
     // alert(allInfo);
     this.router.navigate(['/search-form']);

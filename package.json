@@ -29,6 +29,7 @@
     "@fortawesome/angular-fontawesome": "^0.6.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@progress/kendo-angular-common": "^1.0.0",
     "@progress/kendo-angular-dateinputs": "^4.2.2",
     "@progress/kendo-angular-intl": "^2.0.0",

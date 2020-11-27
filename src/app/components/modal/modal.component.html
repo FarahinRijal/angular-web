@@ -25,10 +25,6 @@
                 <span>{{plot}}</span>
             </p>
         </div>
-        <div class="buttons" *ngIf="!isClicked">
-            <button style="font-size: 12px" type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>
-            <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="lokasi()">Lokasi</button>
-        </div>
 
         <form *ngIf="isClicked" (ngSubmit)="update()" [formGroup]="updateForm">  
           <div>
@@ -71,8 +67,8 @@
           </div>
         <br/>
           <div class="buttons">
-            <button style="font-size: 12px" type="submit" class="button is-primary is-normal">Simpan</button>
-            <button style="font-size: 12px" type="submit" class="button is-danger is-normal" (click)="backTogle()">Batal</button>
+            <button type="submit" class="button is-primary is-normal">Simpan</button>
+            <button type="submit" class="button is-danger is-normal" (click)="batal()">Batal</button>
           </div>
     
         </form>
@@ -81,7 +77,11 @@
 
       
      
-      <!-- <footer class="modal-card-foot">
-      </footer> -->
+      <footer class="modal-card-foot">        
+        <div class="buttons" *ngIf="!isClicked">
+          <button type="submit" class="button is-primary is-normal" (click)="toggle()">Kemaskini</button>
+          <button type="submit" class="button is-primary is-normal" (click)="lokasi()">Lokasi</button>
+      </div>
+      </footer>
     </div>
   </div>

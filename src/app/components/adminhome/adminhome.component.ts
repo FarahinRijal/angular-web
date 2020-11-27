@@ -98,6 +98,7 @@ export class AdminhomeComponent implements OnInit {
 
   reactiveForm: FormGroup;
   data = [];
+  data1 = [];
   faPlus = faPlus;
   faTrash = faTrash;
 
@@ -131,6 +132,20 @@ export class AdminhomeComponent implements OnInit {
       error => console.error(error)
       );
 
+    this.http.get('http://localhost/php_ara/getjangkapenuh.php').subscribe(data1 => {
+    this.data.push(data1);
+    console.log("Luas Tanah",(this.data));
+    }, 
+      error => console.error(error)
+      );
+
+      this.http.get('http://localhost/php_ara/getjangkamasa.php').subscribe(data2 => {
+    this.data.push(data2);
+    console.log("Jangka Masa",(this.data));
+    }, 
+      error => console.error(error)
+      );
+
       this.reactiveForm = formBuilder.group({      
         userid: [''],
         name: [''],
@@ -147,6 +162,7 @@ export class AdminhomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("Data:", this.data);
   }
 
   pipe = new DatePipe('en-US');

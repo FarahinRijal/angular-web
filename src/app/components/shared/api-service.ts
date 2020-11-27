@@ -225,6 +225,31 @@ export class ApiService {
     return this.http.post(this.rootUrl + '/php_ara/replied.php', JSON.stringify(body));
   
   }
+
+  // TANAH YANG TINGGAL
+  tanahtinggal(area: string, luas: string, plot: string, tanah: string) {
+    var body = {
+      area: area,
+      luas: luas,
+      plot:plot,
+      tanah: tanah
+    } 
+    console.log('form input:',body);
+    return this.http.post(this.rootUrl + '/php_ara/tanahtinggal.php', JSON.stringify(body));
+  }
+
+  // JANGKA MASA SEBULAN
+  jangkamasa(luastanah: string, matisebulan: string, area: string, masa: string) {
+    var body = {
+      area: area,
+      luastanah: luastanah,
+      matisebulan:matisebulan,
+      masa: masa
+    } 
+    console.log('form input:',body);
+    return this.http.post(this.rootUrl + '/php_ara/jangkapenuh.php', JSON.stringify(body));
+  }
+
     
 
 }

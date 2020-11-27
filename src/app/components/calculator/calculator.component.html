@@ -1,0 +1,191 @@
+
+    <app-header [isUserLoggedIn]="true" ></app-header>
+    
+    <div class="section">
+      <div class="columns">
+        <aside class="column is-2">
+          <nav class="menu">
+            <p class="menu-label">
+              General
+            </p>
+            <ul class="menu-list">
+              <li><a href="/adminhome">Dashboard</a></li>
+            </ul>
+            <p class="menu-label">
+              Administration
+            </p>
+            <ul class="menu-list">
+              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a href="/semakandata" >Semakan Data</a></li>
+              <li><a href="/listkubur" >Carian Kematian</a></li>
+            </ul>
+            <p class="menu-label">
+              User
+            </p>
+            <ul class="menu-list">
+              <li><a href="/laporandata" >Laporan Data</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        
+        <main class="column">
+            <nav class="breadcrumb is-left" style="margin-left: 10px;" aria-label="breadcrumbs"><br/>
+                <ul>
+                  <li><a routerLink="/adminhome">Dashboard</a></li>
+                  <li><a routerLink="/kalkulator">Kalkulator</a></li>
+                </ul>
+            </nav>
+            <!-- <section class="hero is-light">
+                <div class="hero-body">
+                  <div class="container">
+                    <h1 class="title has-text-centered">Kalkulator</h1>
+                  </div>
+                </div>
+            </section> -->
+            <section>
+                <div class="box">
+                    <h3>PENGIRAAN TANAH</h3>
+                </div>
+                <div class="columns is-multiline">
+                        <!-- <div class="column">
+                          <div class="box">
+                            <b>Keluasan bagi Satu Lot</b><br/><br/>
+                            <p>
+                              <img class="img1" src="assets/img/luaslot.jpg" />
+                            </p>
+                            <div class="field">
+                              <p>Keluasan Tanah Perkuburan yang Telah Digunakan (m<sup>2</sup>) :</p>
+                              <input type="text" [(ngModel)]="tanah">
+                            </div>
+                            <div class="field">
+                              Bilangan Lot Sedia Ada&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;
+                              <input type="text" [(ngModel)]="lotsedia">
+                            <br/><br/>
+                            <button type="submit" class="button is-primary is-small" (click)="KeluasanLot()">Kira</button>
+                            <br/><br/>
+                            <b>Keluasan : {{keluasanlot}} m<sup>2</sup></b>
+                            </div>
+                          </div>
+                        </div> -->
+
+                    <!-- <div class="column">
+                      <div class="box">
+                        <b>Keluasan Tanah Perkuburan yang Masih Kosong</b><br/><br/>
+                        <p>
+                          <img class="tanahkosong" src="assets/img/tanahkosong.jpg" />
+                        </p>
+                        <div class="field">
+                          <p> Keluasan Keseluruhan Tanah Perkuburan : </p>
+                          <input class="input" type="text" [(ngModel)]="luasseluruhtanah">
+                        </div>
+                        <div class="field">
+                          <p>Keluasan Tanah Perkuburan yang Telah Digunakan : </p>
+                          <input class="input" type="text" [(ngModel)]="luastanahguna">
+                        <br/><br/>
+                        <button type="submit" class="button is-primary is-small" (click)="KeseluruhanTanah()">Kira</button>
+                        <br/><br/>
+                        <strong>Luas Tanah Kosong : {{keseluruhantanah | number:'1.2-3'}} hektar</strong>
+                        <br/>
+                        </div>
+                      </div>
+                    </div> -->
+                    
+                    <!-- <div class="column">
+                        <div class="box">
+                          <b>Bilangan Lot yang Masih Kosong</b><br/><br/>
+                          <p>
+                            <img class="img2" src="assets/img/billot.jpg" />
+                          </p>
+                          <div class="field">
+                            <p>Keluasan Lot yang Masih Kosong (m<sup>2</sup>) :</p>
+                            <input type="text" [(ngModel)]="luaslotkosong">
+                          </div>
+                          <div class="field">
+                            <p>Keluasan bagi Satu Lot (m<sup>2</sup>) :</p>
+                            <input type="text" [(ngModel)]="satulot">
+                          <br/><br/>
+                          <button type="submit" class="button is-primary is-small" (click)="LotKosong()">Kira</button>
+                          <br/><br/>
+                          <b>Lot Kosong : {{billotkosong | number:'1.0-0'}} lot</b>
+                          </div>
+                        </div>
+                      </div>-->
+                  </div> 
+
+                  
+            </section>
+
+            <section>
+                <div class="columns is-multiline">
+
+                    
+                        <div class="column">
+                          <form [formGroup]="luasForm">
+                            <div class="box">
+                              <b>Keluasan Tanah Perkuburan Yang Masih Tinggal </b><br/><br/>
+                              <!-- <p>
+                                <img class="img1" src="assets/img/luaslot.jpg" />
+                              </p> -->
+                              <div class="field">
+                                <p>Keluasan Keseluruhan (m<sup>2</sup>) :</p>
+                                <input class="input" type="text" formControlName="luas" [(ngModel)]="luas">
+                              </div>
+                              <div class="field">
+                                <p>Bilangan Plot :</p>
+                                <input class="input" type="text" formControlName="plot" [(ngModel)]="plot">
+                              </div>
+                              <div class="field">
+                                <p>Luas Satu Plot (m<sup>2</sup>) :</p>
+                                <div>
+                                    <input class="plot" type="text" formControlName="panjang" [(ngModel)]="panjang"> (lebar) x  &nbsp; 
+                                    <input class="plot" type="text" formControlName="lebar" [(ngModel)]="lebar"> (panjang)
+                                </div>
+                              </div>
+                              <br/><br/>
+                              <button type="submit" class="button is-primary " (click)="Tinggal()">Kira</button>
+                              <br/><br/>                             
+                              <!-- <input class="input" type="text" value="{{this.luasForm.value.tanah}}" formControlName="area"> -->
+                              <strong>Luas Tanah : {{this.tinggal}} (m<sup>2</sup>) </strong>
+                            </div>                          
+                          </form>  
+                        </div>
+
+                        <div class="column">                          
+                          <form [formGroup]="masaForm">
+                            <div class="box">
+                              <b>Jangka Masa Tanah Penuh</b><br/><br/>
+                              <!-- <p>
+                                <img class="img1" src="assets/img/luaslot.jpg" />
+                              </p> -->
+                              <div class="field">
+                                <p>Keluasan Tanah Perkuburan yang Telah Digunakan (m<sup>2</sup>) :</p>
+                                <input class="input" type="text" [(ngModel)]="luastanah" formControlName="luastanah">
+                              </div>
+                              <div class="field">
+                                <p>Bilangan Kematian Dalam Masa Sebulan :</p>
+                                <input class="input" type="text" [(ngModel)]="matisebulan" formControlName="matisebulan">
+                              </div>
+                              <div class="field">
+                                <p>Luas Satu Plot (m<sup>2</sup>) :</p>
+                                <div>
+                                    <input class="plot" type="text" [(ngModel)]="length" formControlName="length"> (lebar)  x &nbsp; 
+                                    <input class="plot" type="text" [(ngModel)]="width" formControlName="width"> (panjang)
+                                </div>
+                              </div>
+                              <br/><br/>
+                              <button type="submit" class="button is-primary" (click)="JangkaMasa()">Kira</button>
+                              <br/><br/>
+                              <!-- <div class="field">
+                                <p>Luas Satu Plot (m<sup>2</sup>) :</p>
+                                <div><input class="input" type="text" [(ngModel)]="length"> X  <input class="input" type="text" [(ngModel)]="width"></div>
+                              <button type="submit" class="button is-primary is-small" (click)="Area()">Area</button>
+                              <br/><br/>
+                              </div> -->
+                              <strong>Jangka Masa : {{jangkamasa}} bulan</strong>
+                            </div> 
+                          </form>     
+                        </div>
+                  </div>
+            </section>
+        </main>

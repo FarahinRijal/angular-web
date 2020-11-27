@@ -22,6 +22,9 @@ import { MapComponent } from './components/map/map.component';
 import { AdminMapComponent } from './components/admin-map/admin-map.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { AdminmodalComponent } from './components/adminmodal/adminmodal.component';
+import { PopupmapComponent } from './components/popupmap/popupmap.component';
+import { AdminpopupmapComponent } from './components/adminpopupmap/adminpopupmap.component';
+import { CalculatorComponent } from './components/calculator/calculator.component';
 
 
 
@@ -126,8 +129,19 @@ const routes: Routes = [
   {
     path: 'adminmodal',
     component: AdminmodalComponent
-  }
-
+  },
+  {
+    path: 'popupmap',
+    component: PopupmapComponent
+  },
+  {
+    path: 'adminpopupmap',
+    component: AdminpopupmapComponent
+  },
+  {
+    path: 'kalkulator',
+    component: CalculatorComponent
+  },
 
 ];
 

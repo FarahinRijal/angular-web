@@ -17,7 +17,7 @@
             <ul class="menu-list">
               <li><a href="/daftarkubur" >Daftar Kematian</a></li>
               <li><a href="/semakandata" >Semakan Data</a></li>
-              <li><a href="/listkubur" >Senarai Kematian</a></li>
+              <li><a href="/listkubur" >Carian Kematian</a></li>
             </ul>
             <p class="menu-label">
               User
@@ -43,7 +43,8 @@
             <div class="column">
               <div class="columns is-centered">
                 <div class="column is-two-thirds">
-                  <form [formGroup]="reactiveForm" (ngSubmit)="regKubur()">
+                  <form [formGroup]="reactiveForm">
+                    <h2>MAKLUMAT PENDAFTAR</h2>
                     <div class="field">
                       <label class="label">Nama Pendaftar</label>
                         <input class="input"
@@ -55,6 +56,7 @@
                                 </p>
                     </div>
       
+                    <h2>MAKLUMAT KEMATIAN</h2>
                     <div class="field">
                       <label class="label">Nama Si Mati</label>
                         <input class="input"
@@ -79,7 +81,7 @@
                             Sila isi tarikh lahir
                           </p> 
                     </div>
-      
+                    
                     <div class="field">
                       <label class="label">Tarikh Kematian</label>
                             <div class="field is-expanded">
@@ -108,7 +110,7 @@
                     <div class="field">
                       <label class="label">Lokasi:</label>
                       <div class="select">
-                        <select  formControlName="location" class="form-control" (ngModelChange)="changeWebsite($event)">
+                        <select  formControlName="location" class="form-control" (ngModelChange)="changeWebsite($event)" placeholder="lokasi">
                           <option disabled>Lokasi</option>
                           <option *ngFor="let loc of locList" [value]="loc">{{loc}}</option>
                         </select>
@@ -119,11 +121,39 @@
                     </div>
 
                     <div class="field">
+                      <label class="label">Bacaan Latitud dan Longitud</label>
+                        <button class="button is-link" (click)="selectItem()">Peta</button>
+                    </div>
+                    <!-- <p>
+                      <button class="btn btn-primary" (click)="openGoogelMapsModal()">Open Google Map</button>
+                    </p> -->
+                    <!-- <h3>
+                      <p>
+                        Address: {{addr}}
+                      </p>
+                      <p>
+                        Latitude: {{lat}}
+                      </p>
+                      <p>
+                        Longitude: {{lng}}
+                      </p>
+                    </h3> -->
+                    <app-adminpopupmap *ngIf="showModal" (onClose)="selectedItem()"></app-adminpopupmap>
+
+
+                    <!-- <div>
+                      <label class="label" >Latitud : </label>
+                      <input class="input" type="hidden" formControlName="latitude">
+                      <label class="current" >{{lat}}</label>
+                    </div> -->
+
+                    <div class="field">
                       <label class="label">Latitud</label>
                         <input class="input"
-                                type="number"
-                                formControlName="latitude" 
-                                [class.invalid]="!reactiveForm.controls.latitude.valid && reactiveForm.controls.latitude.dirty">
+                                type="text"
+                                formControlName="latitude"
+                                value="{{lat}}">
+                                <label class="current" >{{lat}}</label>
                               <p class="errorMessage" *ngIf="reactiveForm.controls.latitude.hasError('required') && (reactiveForm.controls.latitude.dirty)">
                                   Sila isi latitude
                               </p>
@@ -133,20 +163,19 @@
                       <label class="label">Longitud</label>
                         <input class="input"
                                 type="number"
-                                formControlName="longitude" 
-                                [class.invalid]="!reactiveForm.controls.longitude.valid && reactiveForm.controls.longitude.dirty">
+                                formControlName="longitude"
+                                value={{lng}}>
                               <p class="errorMessage" *ngIf="reactiveForm.controls.longitude.hasError('required') && (reactiveForm.controls.longitude.dirty)">
                                   Sila isi longitude
                               </p>
                     </div>
       
                     <div class="buttons is-centered">
-                    <button type="submit" [disabled]="!reactiveForm.valid" class="button is-primary">Daftar</button>
+                    <button type="submit" [disabled]="!reactiveForm.valid" class="button is-link" (click)="regKubur()">Daftar</button>
                     </div>
-
-
-
                   </form>
+                 
+                  
                 </div>
               </div>
             </div>

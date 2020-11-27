@@ -54,6 +54,11 @@ import { MapComponent } from './components/map/map.component';
 import { AdminMapComponent } from './components/admin-map/admin-map.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { AdminmodalComponent } from './components/adminmodal/adminmodal.component';
+import { PopupmapComponent } from './components/popupmap/popupmap.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { AdminpopupmapComponent } from './components/adminpopupmap/adminpopupmap.component';
+import { CalculatorComponent } from './components/calculator/calculator.component';
 
 
 
@@ -85,6 +90,10 @@ import { AdminmodalComponent } from './components/adminmodal/adminmodal.componen
     AdminMapComponent,
     ModalComponent,
     AdminmodalComponent,
+    PopupmapComponent,
+    GoogleMapsComponent,
+    AdminpopupmapComponent,
+    CalculatorComponent,
     
   
 
@@ -118,8 +127,10 @@ import { AdminmodalComponent } from './components/adminmodal/adminmodal.componen
     DataTablesModule,
     // FlxUiDatatableModule,
     NgxChartsModule,
+    NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCbo68cxXibR42QB4XDeytAnSWhA6kbXHw'
+      apiKey: 'AIzaSyCbo68cxXibR42QB4XDeytAnSWhA6kbXHw',
+      libraries: ['places']
       /* apiKey is required, unless you are a
       premium customer, in which case you can
       use clientId
