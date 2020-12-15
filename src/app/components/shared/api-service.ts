@@ -9,7 +9,7 @@ import { throwError, Observable } from 'rxjs';
 @Injectable()
 export class ApiService {
   //--------------Properties----------------
-  readonly rootUrl = 'http://172.20.10.6';  
+  readonly rootUrl = 'https://www.geopusara.com';  
   // readonly url = '';
   currentUser: any[];
   data: any[];
@@ -31,7 +31,7 @@ export class ApiService {
       phone:phone
     } 
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/adminregister.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/adminregister.php', JSON.stringify(body));
   }
 
   // LOGIN 
@@ -41,7 +41,7 @@ export class ApiService {
       password:password
     } 
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/loginid.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/loginid.php', JSON.stringify(body));
   }
 
   // DAFTAR KUBUR
@@ -57,7 +57,7 @@ export class ApiService {
       longitude: longitude
     } 
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/registerkubur.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/registerkubur.php', JSON.stringify(body));
   }
 
   //ACCEPT AS ADMIN
@@ -71,7 +71,7 @@ export class ApiService {
       job: job
     }
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/adminaccept.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/adminaccept.php', JSON.stringify(body));
   }
 
     //REJECT AS ADMIN
@@ -85,21 +85,23 @@ export class ApiService {
       job: job
     }
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/adminreject.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/adminreject.php', JSON.stringify(body));
   }
 
     //ACCEPT DAFTAR DATA KEMATIAN
-    acceptkubur(userid:string, name:string, dob:string, dod:string, plot:string, location:string) {
+    acceptkubur(userid:string, name:string, dob:string, dod:string, plot:string, location:string, latitude:string, longitude:string,) {
       var body = {
         userid: userid,
         nama: name,
         dob: dob,
         dod: dod,
         plot: plot,
-        location:location
+        location:location,
+        latitude: latitude,
+        longitude: longitude
       }
       console.log('form input:',body);
-      return this.http.post(this.rootUrl + '/php_ara/acceptkubur.php', JSON.stringify(body));
+      return this.http.post(this.rootUrl + '/php/acceptkubur.php', JSON.stringify(body));
     }
 
     //REJECT DAFTAR DATA KEMATIAN
@@ -112,7 +114,7 @@ export class ApiService {
         plot: plot
       }
       console.log('form input:',body);
-      return this.http.post(this.rootUrl + '/php_ara/rejectkubur.php', JSON.stringify(body));
+      return this.http.post(this.rootUrl + '/php/rejectkubur.php', JSON.stringify(body));
     }
 
      //ENQUIRY
@@ -123,11 +125,11 @@ export class ApiService {
         enquiry:enquiry
       } 
       console.log('form input:',body);
-      return this.http.post(this.rootUrl + '/php_ara/enquiry.php', JSON.stringify(body));
+      return this.http.post(this.rootUrl + '/php/enquiry.php', JSON.stringify(body));
     }
 
     public GetAllTodos() {  
-      return this.http.get(this.rootUrl + '/php_ara/listkubur.php').pipe
+      return this.http.get(this.rootUrl + '/php/listkubur.php').pipe
         (map((res: Response) => {  
           return res.json();  
         }))
@@ -149,7 +151,7 @@ export class ApiService {
         testkubur_id: testkubur_id
       }
       console.log('form input:',body);
-      return this.http.post(this.rootUrl + '/php_ara/correctionaccept.php', JSON.stringify(body));
+      return this.http.post(this.rootUrl + '/php/correctionaccept.php', JSON.stringify(body));
     }
 
     //REJECT LAPORAN DATA KEMATIAN
@@ -166,11 +168,11 @@ export class ApiService {
         testkubur_id: testkubur_id
       }
       console.log('form input:',body);
-      return this.http.post(this.rootUrl + '/php_ara/correctionreject.php', JSON.stringify(body));
+      return this.http.post(this.rootUrl + '/php/correctionreject.php', JSON.stringify(body));
     }
 
 
-    // USER SUBMIT LAPORAN DATA-BLUM
+    // USER SUBMIT LAPORAN DATA
     correction(nama:string,dob:string,dod:string,plot:string,corrnama:string, corrdob:string, corrdod:string, corrplot:string, id: number) {
       var body = {
         nama: nama,
@@ -186,7 +188,7 @@ export class ApiService {
         // longitude:longitude
       } 
       console.log('form input:',body);
-      return this.http.put(this.rootUrl + '/php_ara/userupdate.php', JSON.stringify(body));
+      return this.http.put(this.rootUrl + '/php/userupdate.php', JSON.stringify(body));
     }
 
    //CORRECTION DATA KUBUR UNTUK LAPORAN DATA PAGE
@@ -205,7 +207,7 @@ export class ApiService {
       // long: long
     }
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/requestupdate.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/requestupdate.php', JSON.stringify(body));
   }
 
   getCurrentData (id: number){
@@ -222,7 +224,7 @@ export class ApiService {
 
     }
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/replied.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/replied.php', JSON.stringify(body));
   
   }
 
@@ -235,7 +237,7 @@ export class ApiService {
       tanah: tanah
     } 
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/tanahtinggal.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/tanahtinggal.php', JSON.stringify(body));
   }
 
   // JANGKA MASA SEBULAN
@@ -247,7 +249,7 @@ export class ApiService {
       masa: masa
     } 
     console.log('form input:',body);
-    return this.http.post(this.rootUrl + '/php_ara/jangkapenuh.php', JSON.stringify(body));
+    return this.http.post(this.rootUrl + '/php/jangkapenuh.php', JSON.stringify(body));
   }
 
     

@@ -9,21 +9,21 @@
               General
             </p>
             <ul class="menu-list">
-              <li><a href="/adminhome">Dashboard</a></li>
+              <li><a routerLink="/adminhome">Dashboard</a></li>
             </ul>
             <p class="menu-label">
               Administration
             </p>
             <ul class="menu-list">
-              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
-              <li><a href="/semakandata" >Semakan Data</a></li>
-              <li><a href="/listkubur" >Carian Kematian</a></li>
+              <li><a routerLink="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a routerLink="/semakandata" >Semakan Data</a></li>
+              <li><a routerLink="/listkubur" >Carian Kematian</a></li>
             </ul>
             <p class="menu-label">
               User
             </p>
             <ul class="menu-list">
-              <li><a href="/laporandata" >Laporan Data</a></li>
+              <li><a routerLink="/laporandata" >Laporan Data</a></li>
             </ul>
           </nav>
         </aside>
@@ -60,7 +60,7 @@
                             <td>
                               <div class="field is-grouped">
                                 <p class="control">
-                            <button style="font-size: 13px;" type="submit" (click)="accept(row.userid,row.name,row.dob,row.dod,row.plot,row.location)" class="button is-success is-normal" >Terima</button></p>
+                            <button style="font-size: 13px;" type="submit" (click)="accept(row.userid,row.name,row.dob,row.dod,row.plot,row.location,row.latitude,row.longitude)" class="button is-success is-normal" >Terima</button></p>
                             <p class="control">
                             <button style="font-size: 13px;" type="submit" (click)="reject(row.userid,row.name,row.dob,row.dod,row.plot)" class="button is-danger is-normal" >Tolak</button> </p></div>
                             </td>

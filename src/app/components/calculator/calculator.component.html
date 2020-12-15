@@ -9,21 +9,21 @@
               General
             </p>
             <ul class="menu-list">
-              <li><a href="/adminhome">Dashboard</a></li>
+              <li><a routerLink="/adminhome">Dashboard</a></li>
             </ul>
             <p class="menu-label">
               Administration
             </p>
             <ul class="menu-list">
-              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
-              <li><a href="/semakandata" >Semakan Data</a></li>
-              <li><a href="/listkubur" >Carian Kematian</a></li>
+              <li><a routerLink="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a routerLink="/semakandata" >Semakan Data</a></li>
+              <li><a routerLink="/listkubur" >Carian Kematian</a></li>
             </ul>
             <p class="menu-label">
               User
             </p>
             <ul class="menu-list">
-              <li><a href="/laporandata" >Laporan Data</a></li>
+              <li><a routerLink="/laporandata" >Laporan Data</a></li>
             </ul>
           </nav>
         </aside>
@@ -146,7 +146,7 @@
                               <button type="submit" class="button is-primary " (click)="Tinggal()">Kira</button>
                               <br/><br/>                             
                               <!-- <input class="input" type="text" value="{{this.luasForm.value.tanah}}" formControlName="area"> -->
-                              <strong>Luas Tanah : {{this.tinggal}} (m<sup>2</sup>) </strong>
+                              <strong>Luas Tanah : {{this.tinggal | number:'1.0-0'}} m<sup>2</sup> </strong>
                             </div>                          
                           </form>  
                         </div>
@@ -182,7 +182,7 @@
                               <button type="submit" class="button is-primary is-small" (click)="Area()">Area</button>
                               <br/><br/>
                               </div> -->
-                              <strong>Jangka Masa : {{jangkamasa}} bulan</strong>
+                              <strong>Jangka Masa : {{jangkamasa | number:'1.0-0'}} bulan</strong>
                             </div> 
                           </form>     
                         </div>

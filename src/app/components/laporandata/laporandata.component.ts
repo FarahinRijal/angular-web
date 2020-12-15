@@ -33,7 +33,7 @@ export class LaporandataComponent {
     private router: Router
 
   ) { 
-    this.http.get('http://localhost/php_ara/correctionlist.php').subscribe(data => {
+    this.http.get('php/correctionlist.php').subscribe(data => {
       this.data.push(data);
       console.log(this.data);
       
@@ -72,8 +72,8 @@ export class LaporandataComponent {
       
       console.log("error:", error);
       //skip error,sbb tk lalu result
-      const allInfo = `${name}, laporan diterima!`;
-      alert(allInfo);
+      // const allInfo = `${name}, laporan diterima!`;
+      // alert(allInfo);
       this.router.navigate(['/laporandata']);
       
       // if(error.status==200){

@@ -33,7 +33,7 @@ export class MasterhomeComponent {
   )
   
   {
-    this.http.get('http://localhost/php_ara/getadmin.php').subscribe(data => {
+    this.http.get('php/getadmin.php').subscribe(data => {
       this.data.push(data);
       console.log(this.data);
       

@@ -84,7 +84,7 @@ export class ListKuburComponent implements OnInit, OnDestroy {
       // this.response.push(response);
       // console.log("response ==> ", response);
 
-      this.http.post('http://localhost/php_ara/searchloc.php', JSON.stringify(body))
+      this.http.post('php/searchloc.php', JSON.stringify(body))
       .subscribe((response: any[]) => {
         this.response = response;
       console.log("response ==> ", response);

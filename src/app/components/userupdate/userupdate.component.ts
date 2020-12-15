@@ -40,7 +40,7 @@ export class UserupdateComponent implements OnInit{
 
   {
 
-    this.http.get('http://localhost/php_ara/correctionlist.php').subscribe(data => {
+    this.http.get('php/correctionlist.php').subscribe(data => {
       this.data.push(data);
       console.log(this.data);
      

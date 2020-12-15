@@ -9,21 +9,21 @@
               General
             </p>
             <ul class="menu-list">
-              <li><a href="/adminhome">Dashboard</a></li>
+              <li><a routerLink="/adminhome">Dashboard</a></li>
             </ul>
             <p class="menu-label">
               Administration
             </p>
             <ul class="menu-list">
-              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
-              <li><a href="/semakandata" >Semakan Data</a></li>
-              <li><a href="/listkubur" >Carian Kematian</a></li>
+              <li><a routerLink="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a routerLink="/semakandata" >Semakan Data</a></li>
+              <li><a routerLink="/listkubur" >Carian Kematian</a></li>
             </ul>
             <p class="menu-label">
               User
             </p>
             <ul class="menu-list">
-              <li><a href="/laporandata" >Laporan Data</a></li>
+              <li><a routerLink="/laporandata" >Laporan Data</a></li>
             </ul>
           </nav>
         </aside>
@@ -153,7 +153,7 @@
                                 type="text"
                                 formControlName="latitude"
                                 value="{{lat}}">
-                                <label class="current" >{{lat}}</label>
+                                <!-- <label class="current" >{{lat}}</label> -->
                               <p class="errorMessage" *ngIf="reactiveForm.controls.latitude.hasError('required') && (reactiveForm.controls.latitude.dirty)">
                                   Sila isi latitude
                               </p>

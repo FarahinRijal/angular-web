@@ -31,7 +31,7 @@ export class DisplaydataComponent implements OnInit {
     ) {
 
 
-    this.http.get('http://localhost/php_ara/listkubur.php').subscribe(data => {
+    this.http.get('php/listkubur.php').subscribe(data => {
     this.data.push(data);
     console.log(this.data);
    

@@ -81,7 +81,7 @@ submit(){
     }
     
 
-    this.http.post('http://localhost/php_ara/searchloc.php', JSON.stringify(body))
+    this.http.post('php/searchloc.php', JSON.stringify(body))
       .subscribe((response: any[]) => {
         this.response = response;
       // this.response.push(response);

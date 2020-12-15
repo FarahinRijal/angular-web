@@ -9,21 +9,21 @@
               General
             </p>
             <ul class="menu-list">
-              <li><a href="/adminhome">Dashboard</a></li>
+              <li><a routerLink="/adminhome">Dashboard</a></li>
             </ul>
             <p class="menu-label">
               Administration
             </p>
             <ul class="menu-list">
-              <li><a href="/daftarkubur" >Daftar Kematian</a></li>
-              <li><a href="/semakandata" >Semakan Data</a></li>
-              <li><a href="/listkubur" >Carian Kematian</a></li>
+              <li><a routerLink="/daftarkubur" >Daftar Kematian</a></li>
+              <li><a routerLink="/semakandata" >Semakan Data</a></li>
+              <li><a routerLink="/listkubur" >Carian Kematian</a></li>
             </ul>
             <p class="menu-label">
               User
             </p>
             <ul class="menu-list">
-              <li><a href="/laporandata" >Laporan Data</a></li>
+              <li><a routerLink="/laporandata" >Laporan Data</a></li>
             </ul>
           </nav>
         </aside>
@@ -39,46 +39,49 @@
           </nav>  
         <!-- <div class="columns"> -->
 
-          <div class="columns is-multiline">
-
-            <div class="box">
-              <div class="column">
-                <h3>Keluasan Tanah Perkuburan Yang Masih Tinggal </h3><br/>
-               <div *ngFor="let row of data[1]">
-                 <p> {{row.keseluruhan}} - ({{row.bilplot}} * {{row.luasplot}})= {{row.luastanah}} (m<sup>2</sup>)</p><br/>                   
-               </div>
-              </div>
-            </div>
-           <br/>
-           <div class="box">
+          <div class="columns is-multiline">   
+            
             <div class="column">
-              <h3>Jangka Masa Tanah Penuh Dalam Masa Sebulan </h3><br/>
-              <div *ngFor="let col of data[2]">
-                <p> {{col.tanah}} / {{col.kematian}} * {{col.luas}} = {{col.jangka}} (m<sup>2</sup>)</p><br/>                   
-              </div> 
-            </div>
-           </div>
-           
-            <div class="box">              
-              <h3  style="text-align: center;"> Jumlah Kematian Mengikut Tahun</h3>
-              <div class="container" style="width: 100%; height: 100%; text-align: center;" >
-                <ngx-charts-bar-vertical 
-                [view]="view"
-                (window:resize)="onResize($event)"
-                [scheme]="colorScheme"
-                [results]="year"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="false"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel">
-                </ngx-charts-bar-vertical>
-          </div>
+              <!-- <div class="box">               -->
+                <h3  style="text-align: center;"> Jumlah Kematian Mengikut Tahun</h3>
+                <div class="container" style="width: 100%; height: 100%; text-align: center;" >
+                  <ngx-charts-bar-vertical 
+                  [view]="view"
+                  (window:resize)="onResize($event)"
+                  [scheme]="colorScheme"
+                  [results]="year"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="false"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel">
+                  </ngx-charts-bar-vertical>
+                </div>
+              <!-- </div> -->
             </div>
 
+            <div class="column">
+              <div class="box">
+                <div class="column">
+                  <h3>Keluasan Tanah Perkuburan Yang Masih Tinggal </h3><br/>
+                 <div *ngFor="let row of data[1]">
+                   <p> {{row.keseluruhan}} - ({{row.bilplot}} * {{row.luasplot}})= {{row.luastanah | number:'1.0-0'}} m<sup>2</sup></p><br/>                   
+                 </div>
+                </div>
+              </div>
+             <br/>
+             <div class="box">
+              <div class="column">
+                <h3>Jangka Masa Tanah Penuh Dalam Masa Sebulan </h3><br/>
+                <div *ngFor="let col of data[2]">
+                  <p> {{col.tanah}} / {{col.kematian}} * {{col.luas}} = {{col.jangka | number:'1.0-0'}} bulan</p><br/>                   
+                </div> 
+              </div>
+             </div>
+            </div>
 
           </div>
         <!-- </div> -->

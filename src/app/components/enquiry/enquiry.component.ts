@@ -28,7 +28,7 @@ export class EnquiryComponent {
     private http: HttpClient
   ) { 
 
-    this.http.get('http://localhost/php_ara/listenquiry.php').subscribe(data => {
+    this.http.get('php/listenquiry.php').subscribe(data => {
       this.data.push(data);
       console.log(this.data);
       

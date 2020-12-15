@@ -25,7 +25,7 @@ constructor(
 )
 
 {
-  this.http.get('http://localhost/php_ara/getkubur.php').subscribe(data => {
+  this.http.get('php/getkubur.php').subscribe(data => {
     this.data.push(data);
     console.log(this.data);
    
@@ -52,19 +52,23 @@ ngOnDestroy() {
 }
 
 
-accept(userid, name, dob, dod, plot,location) {
+accept(userid, name, dob, dod, plot,location,latitude,longitude) {
   console.log("accept kubur");
-  this.ApiService.acceptkubur(userid, name, dob, dod, plot,location).subscribe(result => {
+  this.ApiService.acceptkubur(userid, name, dob, dod, plot,location,latitude,longitude).subscribe(result => {
   console.log("result");
-  console.log(result)
+  console.log(result);
+  console.log("kubur accepted");
+  const allInfo = `${name} berjaya ditambah!`;
+  alert(allInfo);
+  this.router.navigate(['/semakandata']);
   },
   error => {
-    console.log("kubur accepted");
+    // console.log("kubur accepted");
     console.log(error.status);
     
     if(error.status==200){
-    const allInfo = `${name} berjaya ditambah!`;
-    alert(allInfo);
+    // const allInfo = `${name} berjaya ditambah!`;
+    // alert(allInfo);
     this.router.navigate(['/semakandata']);
     }
   }

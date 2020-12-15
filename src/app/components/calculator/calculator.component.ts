@@ -118,7 +118,7 @@ export class CalculatorComponent implements OnInit {
        error => {
          console.log(error);
          this.invalid = true;
-         const allInfo = `Rekod tidak berjaya!`;
+         const allInfo = `Rekod keluasan tanah tidak berjaya!`;
          alert(allInfo);
      });
      
@@ -172,9 +172,10 @@ export class CalculatorComponent implements OnInit {
       
     },
       error => {
-        console.log(error);
-        this.invalid = true;
-        const allInfo = `Rekod tidak berjaya!`;
+        console.log("Error:",error);
+        // this.invalid = true;;
+        const allInfo = `Rekod jangka masa berjaya ditambah.`;
+        // const allInfo = `Rekod jangka masa tidak berjaya!`;
         alert(allInfo);
     });
   }
