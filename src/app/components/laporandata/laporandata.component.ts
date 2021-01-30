@@ -72,8 +72,8 @@ export class LaporandataComponent {
       
       console.log("error:", error);
       //skip error,sbb tk lalu result
-      // const allInfo = `${name}, laporan diterima!`;
-      // alert(allInfo);
+      const allInfo = `${name}, laporan diterima!`;
+      alert(allInfo);
       this.router.navigate(['/laporandata']);
       
       // if(error.status==200){

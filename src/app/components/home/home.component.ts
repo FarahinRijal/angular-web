@@ -60,21 +60,6 @@ import { Component, OnInit } from '@angular/core';
     </div>
 
   
-    <nav class="level" style="margin-top: 30px; margin-bottom: 30px;">
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Pelawat</p>
-          <p class="title">3,456</p>
-        </div>
-      </div>
-
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Pengguna</p>
-          <p class="title">123</p>
-        </div>
-      </div>
-    </nav>
 
   `,
   styles: [`
